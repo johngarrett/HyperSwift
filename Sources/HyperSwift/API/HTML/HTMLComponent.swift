@@ -1,12 +1,12 @@
 import Foundation
 
-public class HTMLComponent: HTMLElement {
+open class HTMLComponent: HTMLElement {
     public var tag: HTMLTag
     public var className: String
     public var attributes: [String: String]
     public var childComponents: [HTMLElement]?
 
-    public func render() -> String {
+    open func render() -> String {
         tag.opening(attributes) + (childComponents?.map { $0.render() }.joined() ?? "") + tag.closing()
     }
     

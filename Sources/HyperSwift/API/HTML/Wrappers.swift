@@ -1,6 +1,6 @@
 import Foundation
 
-public class SimpleHTMLComponent: HTMLComponent {
+open class SimpleHTMLComponent: HTMLComponent {
     public let text: String!
     public init(_ text: String, attributes: [String:String] = ["":""], cls: String = "", _ tag: HTMLTag) {
         self.text = text
