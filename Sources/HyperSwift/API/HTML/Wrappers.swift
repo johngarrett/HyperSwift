@@ -7,7 +7,7 @@ open class SimpleHTMLComponent: HTMLComponent {
         super.init(tag, cls: cls, attributes: attributes)
     }
     
-    override public func render() -> String {
+    override open func render() -> String {
         self.tag.opening(attributes) + self.text + self.tag.closing()
     }
 }
