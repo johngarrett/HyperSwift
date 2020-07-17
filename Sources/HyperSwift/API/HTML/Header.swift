@@ -7,8 +7,8 @@ public class Header: SimpleHTMLComponent {
     }
 }
 
-extension Header {
-     convenience public init(_ style: HTMLTag = .header1, cls: String = "", attributes: [String: String] = ["":""], @HeaderBuilder _ text: () -> String) {
+public extension Header {
+     convenience init(_ style: HTMLTag = .header1, cls: String = "", attributes: [String: String] = ["":""], @HeaderBuilder _ text: () -> String) {
         self.init(
             style,
             text: text(),

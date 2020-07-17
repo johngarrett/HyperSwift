@@ -27,7 +27,7 @@ public enum HTMLTag: String {
     
     case empty
 
-    func opening(_ attributes: [String: String]? = nil) -> String {
+    public func opening(_ attributes: [String: String]? = nil) -> String {
         switch self {
         case .empty:
             return ""
@@ -49,7 +49,7 @@ public enum HTMLTag: String {
         }
     }
     
-    func closing() -> String {
+    public func closing() -> String {
         switch self {
         case .empty, .img:
             return ""

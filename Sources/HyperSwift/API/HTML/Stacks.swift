@@ -1,7 +1,7 @@
 import Foundation
 
-class HStack: HTMLComponent { }
-extension HStack {
+public class HStack: HTMLComponent { }
+public extension HStack {
     convenience init(
         _ cls: String? = nil,
         justify justification: Justification = .flexStart,
@@ -41,15 +41,15 @@ extension HStack {
 }
 
 @_functionBuilder
-struct HStackBuilder {
-    static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+public struct HStackBuilder {
+    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
         return HTMLComponent(.empty, components)
     }
 }
 
-class VStack: HTMLComponent { }
+public class VStack: HTMLComponent { }
 
-extension VStack {
+public extension VStack {
     convenience init(
         _ cls: String? = nil,
         justify justification: Justification = .flexStart,
@@ -89,8 +89,8 @@ extension VStack {
 }
 
 @_functionBuilder
-struct VStackBuilder {
-    static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+public struct VStackBuilder {
+    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
         return HTMLComponent(.empty, components)
     }
 }

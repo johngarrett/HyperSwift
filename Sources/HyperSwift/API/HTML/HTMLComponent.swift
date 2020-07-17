@@ -39,8 +39,8 @@ public class HTMLComponent: HTMLElement {
     }
 }
 
-extension HTMLComponent {
-    convenience public init(_ tag: HTMLTag? = nil, cls: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> HTMLElement) {
+public extension HTMLComponent {
+    convenience init(_ tag: HTMLTag? = nil, cls: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> HTMLElement) {
         self.init(
             tag ?? HTMLTag.empty,
             cls: cls ?? "",
@@ -49,7 +49,7 @@ extension HTMLComponent {
         )
     }
     
-    convenience public init(_ tag: HTMLTag, cls: String? = nil,  attributes: [String: String]? = nil, @HTMLComponentBuilder _ components: () -> [HTMLElement]) {
+    convenience init(_ tag: HTMLTag, cls: String? = nil,  attributes: [String: String]? = nil, @HTMLComponentBuilder _ components: () -> [HTMLElement]) {
            self.init(
                tag,
                cls: cls ?? "",
@@ -58,7 +58,7 @@ extension HTMLComponent {
            )
        }
     
-    convenience public init(_ tag: HTMLTag, cls: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> String) {
+    convenience init(_ tag: HTMLTag, cls: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> String) {
         self.init(
             tag,
             cls: cls ?? "",

@@ -1,8 +1,8 @@
 import Foundation
 
 public struct CSSStyleSheet {
-    static public var stylesheet: [String: [String]] = ["": [""]]
-    static public func add(_ linearKV: String, for className: String) {
+    public static var stylesheet: [String: [String]] = ["": [""]]
+    public static func add(_ linearKV: String, for className: String) {
         stylesheet[className] = stylesheet[className] ?? [""]
         // temporary, TODO: switch to dictionary
         if !stylesheet[className]!.contains(linearKV) {
@@ -10,11 +10,11 @@ public struct CSSStyleSheet {
         }
     }
     
-    static public func add(_ linearKV: String, for tag: HTMLTag, parent parentClass: String) {
+    public static func add(_ linearKV: String, for tag: HTMLTag, parent parentClass: String) {
         add(linearKV, for: "\(parentClass)")
     }
     
-    static public func generateStyleSheet() -> String {
+    public static func generateStyleSheet() -> String {
         var output = ""
         for (className, styles) in stylesheet {
             if className == "" {
