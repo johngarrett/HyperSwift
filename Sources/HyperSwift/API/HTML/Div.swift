@@ -7,10 +7,10 @@ public class Div: HTMLComponent {
 }
 
 public extension Div {
-    convenience init(_ cls: String, attributes:[String:String] = ["":""], @DivBuilder _ children: () -> [HTMLElement]) {
+    convenience init(_ cls: String="", attributes:[String:String] = ["":""], @DivBuilder _ children: () -> [HTMLElement]) {
         self.init(cls, attributes, children: children())
     }
-    convenience init(_ cls: String, attributes:[String:String] = ["":""], @DivBuilder _ child: () -> HTMLElement) {
+    convenience init(_ cls: String="", attributes:[String:String] = ["":""], @DivBuilder _ child: () -> HTMLElement) {
         self.init(cls, attributes, children: [child()])
     }
     
@@ -19,7 +19,7 @@ public extension Div {
     }
 }
 
-@_functionBuilder
+ @_functionBuilder
 public struct DivBuilder {
     public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
         return HTMLComponent(.empty, components)

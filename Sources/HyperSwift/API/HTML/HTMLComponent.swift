@@ -10,7 +10,7 @@ open class HTMLComponent: HTMLElement {
         tag.opening(attributes) + (childComponents?.map { $0.render() }.joined() ?? "") + tag.closing()
     }
     
-    public init (_ tag: HTMLTag, cls: String = "", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
+    public init(_ tag: HTMLTag, cls: String = "", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
         self.tag = tag
         self.attributes = attributes
         self.childComponents = childComponents
@@ -75,7 +75,7 @@ public struct HTMLComponentBuilder {
     }
 }
 
-extension HTMLComponent: Equatable {
+ extension HTMLComponent: Equatable {
     public static func == (lhs: HTMLComponent, rhs: HTMLComponent) -> Bool {
         return lhs.className == rhs.className
     }
