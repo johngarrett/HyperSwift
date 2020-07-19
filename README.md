@@ -35,8 +35,3 @@ VStack(justify: .center, align: .center) {
 HyperSwift is being used on [garrepi.dev](https://www.garrepi.dev) as we speak! Checkout the source code [here](https://github.com/johngarrett/g-server/). 
 #### Contributing
 I have little free time and an even little-er ability to focus on one project. Feel free to send in a PR with ideas, suggestions, or implimented code!
-#### TODO
-The following need to get done before a 1.0
-[] Add Example
-[] Add Root
-[] Bring CSSPage generation over from g-server
