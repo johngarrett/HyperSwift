@@ -9,5 +9,6 @@ public protocol ComponentType {
 }
 
 public protocol HTMLPage: ComponentType {
-    static var absoluteAddress: String { get set }
+    static var title: String { get set }
+    static var href: String { get set }
 }
