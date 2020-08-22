@@ -31,12 +31,11 @@ VStack(justify: .center, align: .center) {
 .border(width: 1, color: .black)
 ```
 ![output](https://media.discordapp.net/attachments/732426870100066455/733822598504513566/unknown.png)
+#### CSS
+To add CSS to the stylesheet, you have to call one of the functions defined in [CSSExtensions.swift](/Sources/HyperSwift/API/CSS/CSSExtensions.swift).  
+If an element has a class name, the styles will automatically be added to [CSSStyleSheet.swift](/Sources/HyperSwift/API/CSS/CSSStyleSheet.swift)'s stylesheet.  
+Calling `.generateStyleSheet()` on [CSSStyleSheet.swift](/Sources/HyperSwift/API/CSS/CSSStyleSheet.swift) will return a string containing the stylesheet.
 #### Examples
-HyperSwift is being used on [garrepi.dev](https://www.garrepi.dev) as we speak! Checkout the source code [here](https://github.com/johngarrett/g-server/). 
+HyperSwift is being used on [garrepi.dev](https://www.garrepi.dev) as we speak! Checkout the source code [here](https://github.com/johngarrett/garrepi.dev/). 
 #### Contributing
 I have little free time and an even little-er ability to focus on one project. Feel free to send in a PR with ideas, suggestions, or implimented code!
-#### TODO
-The following need to get done before a 1.0
-[] Add Example
-[] Add Root
-[] Bring CSSPage generation over from g-server
