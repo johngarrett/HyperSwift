@@ -1,9 +1,9 @@
 import Foundation
 
 public extension HTMLComponent {
-     func margin(top: Double=0, right: Double=0,
-                bottom: Double=0, left: Double=0,
-                _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+     func margin(
+        top: Double=0, right: Double=0, bottom: Double=0, left: Double=0, _ type: CSSUnit.UnitType = .px
+     ) -> HTMLComponent {
         updateComponent(with: "margin: \(CSSUnit(top, type)) \(CSSUnit(right, type)) \(CSSUnit(bottom, type)) \(CSSUnit(left, type));")
     }
     func margin(_ all: Double=0, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
@@ -105,7 +105,9 @@ public extension HTMLComponent {
         updateComponent(with: "\(key): \(value);")
     }
 
-    func padding(top: Double=0, right: Double=0, bottom: Double=0, left: Double=0, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func padding(
+        top: Double=0, right: Double=0, bottom: Double=0, left: Double=0, _ type: CSSUnit.UnitType = .px
+    ) -> HTMLComponent {
         updateComponent(with: "padding:\(CSSUnit(top, type)) \(CSSUnit(right, type)) \(CSSUnit(bottom, type)) \(CSSUnit(left, type));")
     }
     func padding(_ all: Double=0, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
