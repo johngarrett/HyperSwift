@@ -70,7 +70,7 @@ public extension HTMLComponent {
 
 @_functionBuilder
 public struct HTMLComponentBuilder {
-    static public func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
         return HTMLComponent(.empty, components)
     }
 }

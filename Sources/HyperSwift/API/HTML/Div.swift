@@ -19,7 +19,7 @@ public extension Div {
     }
 }
 
- @_functionBuilder
+@_functionBuilder
 public struct DivBuilder {
     public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
         return HTMLComponent(.empty, components)
