@@ -73,10 +73,24 @@ public extension HTMLComponent {
         updateComponent(with: "background-color: \(color.description);")
     }
     
+    func border(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+        updateComponent(with: "border: \(radius)px \(type.rawValue) \(color.description);")
+    }
+    func borderRight(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+        updateComponent(with: "border-right: \(radius)px \(type.rawValue) \(color.description);")
+    }
+    func borderLeft(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+        updateComponent(with: "border-left: \(radius)px \(type.rawValue) \(color.description);")
+    }
+    func borderTop(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+        updateComponent(with: "border-top: \(radius)px \(type.rawValue) \(color.description);")
+    }
+    func borderBottom(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+        updateComponent(with: "border-bottom: \(radius)px \(type.rawValue) \(color.description);")
+    }
     func borderRadius(_ radius: Double) -> HTMLComponent {
         updateComponent(with: "border-radius: \(radius)px;")
     }
-    
     func display(_ dt: DisplayType) -> HTMLComponent {
         updateComponent(with: "display: \(dt.rawValue);")
     }
@@ -95,6 +109,9 @@ public extension HTMLComponent {
 
     func gridGap(_ space: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         updateComponent(with: "grid-gap: \(CSSUnit(space, type));")
+    }
+    func font(weight: FontWeight, size: Double, family: String) -> HTMLComponent {
+        updateComponent(with: "font-weight:\(weight.rawValue); font-size:\(size)px; font-family:\(family);")
     }
     
     func font(weight: String, size: Double, family: String) -> HTMLComponent {

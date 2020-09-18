@@ -5,6 +5,15 @@ public enum TextAlign: String {
     case left
     case right
 }
+
+public enum FontWeight: String {
+    case normal, bold, bolder, lighter,
+    onehundred = "100", twohundred = "200", threehundred = "300",
+    fourhundred = "400", fiveehundred = "500", sixhundred = "600",
+    sevenhundred = "700", eighthundred = "800", ninehundred = "900",
+    initial, inherit
+}
+
 public enum ObjectFit: String {
     case cover
 }
@@ -60,4 +69,9 @@ public enum WhiteSpace: String {
 
 public enum Overflow: String {
     case hidden
+}
+
+public enum BorderType: String {
+    case dotted, dashed, solid, double, groove,
+        ridge, inset, outset, none, hidden
 }
