@@ -35,13 +35,12 @@ public enum HTMLTag: String {
             return "<\(self.rawValue)"
         default:
             if let attributes = attributes {
-                let flattenedAttributes = (attributes.compactMap { key, value -> String in
-                    if (key == "class" && value == "") || (key == "") || (value == "") {
-                        return ""
+                let flattenedAttributes =
+                    attributes.filter {
+                        $0.key.count != 0 && $0.value.count != 0
                     }
-                    return "\(key)=\"\(value)\""
-                } as Array).joined(separator: " ")
-                                
+                    .map {"\($0.key)=\"\($0.value)\""}
+                    .joined(separator: " ")                   
                 return "<\(self.rawValue) \(flattenedAttributes)>"
             } else {
                 return "<\(self.rawValue)>"

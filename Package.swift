@@ -7,6 +7,7 @@ let package = Package(
         .library(name: "HyperSwift", targets: ["HyperSwift"])
     ],
     targets: [
-        .target(name: "HyperSwift")
+        .target(name: "HyperSwift"),
+        .testTarget(name: "HyperSwiftTests", dependencies: ["HyperSwift"])
     ]
 )
