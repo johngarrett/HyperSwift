@@ -2,9 +2,9 @@ import Foundation
 
 open class SimpleHTMLComponent: HTMLComponent {
     public let text: String!
-    public init(_ text: String, attributes: [String:String] = ["":""], cls: String = "", _ tag: HTMLTag) {
+    public init(_ text: String, attributes: [String:String] = ["":""], cssClass: String = "", _ tag: HTMLTag) {
         self.text = text
-        super.init(tag, cls: cls, attributes: attributes)
+        super.init(tag, cssClass: cssClass, attributes: attributes)
     }
     
     override open func render() -> String {
@@ -13,8 +13,8 @@ open class SimpleHTMLComponent: HTMLComponent {
 }
 
 public class Paragraph: SimpleHTMLComponent {
-    public init(cls: String = "", _ text: String) {
-        super.init(text, cls: cls, .paragraph)
+    public init(cssClass: String = "", _ text: String) {
+        super.init(text, cssClass: cssClass, .paragraph)
     }
 }
 
@@ -31,8 +31,8 @@ public class Image: HTMLComponent {
 }
 
 public class Link: SimpleHTMLComponent {
-    public init( _ text: String, cls: String = "", href: String) {
-        super.init(text, attributes: ["href": href], cls: cls, .a)
+    public init( _ text: String, cssClass: String = "", href: String) {
+        super.init(text, attributes: ["href": href], cssClass: cssClass, .a)
     }
 }
 

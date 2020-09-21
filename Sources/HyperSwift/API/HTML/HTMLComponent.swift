@@ -10,13 +10,13 @@ open class HTMLComponent: HTMLElement {
         tag.opening(attributes) + (childComponents?.map { $0.render() }.joined() ?? "") + tag.closing()
     }
     
-    public init(_ tag: HTMLTag, cls: String = "", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
+    public init(_ tag: HTMLTag, cssClass: String = "", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
         self.tag = tag
         self.attributes = attributes
         self.childComponents = childComponents
-        self.className = cls
-        self.attributes["class"] = cls
-        if cls != "" {
+        self.className = cssClass
+        self.attributes["class"] = cssClass
+        if cssClass != "" {
             saveAttributes()
         }
     }
@@ -40,28 +40,28 @@ open class HTMLComponent: HTMLElement {
 }
 
 public extension HTMLComponent {
-    convenience init(_ tag: HTMLTag? = nil, cls: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> HTMLElement) {
+    convenience init(_ tag: HTMLTag? = nil, cssClass: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> HTMLElement) {
         self.init(
             tag ?? HTMLTag.empty,
-            cls: cls ?? "",
+            cssClass: cssClass ?? "",
             attributes: attributes ?? ["":""],
             [component()]
         )
     }
     
-    convenience init(_ tag: HTMLTag, cls: String? = nil,  attributes: [String: String]? = nil, @HTMLComponentBuilder _ components: () -> [HTMLElement]) {
+    convenience init(_ tag: HTMLTag, cssClass: String? = nil,  attributes: [String: String]? = nil, @HTMLComponentBuilder _ components: () -> [HTMLElement]) {
            self.init(
                tag,
-               cls: cls ?? "",
+               cssClass: cssClass ?? "",
                attributes: attributes ?? ["":""],
                components()
            )
        }
     
-    convenience init(_ tag: HTMLTag, cls: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> String) {
+    convenience init(_ tag: HTMLTag, cssClass: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> String) {
         self.init(
             tag,
-            cls: cls ?? "",
+            cssClass: cssClass ?? "",
             attributes: attributes ?? ["":""],
             [RawHTML(component())]
         )

@@ -1,21 +1,21 @@
 import Foundation
 
 public class Div: HTMLComponent {
-    public init(_ cls: String, _ attributes:[String: String] = ["": ""], children: [HTMLElement]? = nil) {
-        super.init(.div, cls: cls, attributes: attributes, children)
+    public init(_ cssClass: String, _ attributes:[String: String] = ["": ""], children: [HTMLElement]? = nil) {
+        super.init(.div, cssClass: cssClass, attributes: attributes, children)
     }
 }
 
 public extension Div {
-    convenience init(_ cls: String="", attributes:[String:String] = ["":""], @DivBuilder _ children: () -> [HTMLElement]) {
-        self.init(cls, attributes, children: children())
+    convenience init(_ cssClass: String="", attributes:[String:String] = ["":""], @DivBuilder _ children: () -> [HTMLElement]) {
+        self.init(cssClass, attributes, children: children())
     }
-    convenience init(_ cls: String="", attributes:[String:String] = ["":""], @DivBuilder _ child: () -> HTMLElement) {
-        self.init(cls, attributes, children: [child()])
+    convenience init(_ cssClass: String="", attributes:[String:String] = ["":""], @DivBuilder _ child: () -> HTMLElement) {
+        self.init(cssClass, attributes, children: [child()])
     }
     
-    convenience init(_ cls: String = "", attributes:[String:String] = ["":""], @DivBuilder _ child: () -> String) {
-        self.init(cls, attributes, children: [RawHTML(child())])
+    convenience init(_ cssClass: String = "", attributes:[String:String] = ["":""], @DivBuilder _ child: () -> String) {
+        self.init(cssClass, attributes, children: [RawHTML(child())])
     }
 }
 
