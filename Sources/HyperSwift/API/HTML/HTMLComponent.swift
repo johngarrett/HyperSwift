@@ -76,6 +76,12 @@ public struct HTMLComponentBuilder {
     public static func buildBlock(_ components: String...) -> HTMLElement {
         return HTMLComponent(.empty, components.map { RawHTML($0) })
     }
+    public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
+        return HTMLComponent(.empty, components)
+    }
+    public static func buildBlock(_ components: [String]) -> HTMLElement {
+        return HTMLComponent(.empty, components.map { RawHTML($0) })
+    }
 }
 
  extension HTMLComponent: Equatable {
