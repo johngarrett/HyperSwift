@@ -40,8 +40,10 @@ public enum HTMLTag: String {
                         $0.key.count != 0 && $0.value.count != 0
                     }
                     .map {"\($0.key)=\"\($0.value)\""}
-                    .joined(separator: " ")                   
-                return "<\(self.rawValue) \(flattenedAttributes)>"
+                    .joined(separator: " ")
+                return flattenedAttributes != ""
+                    ? "<\(self.rawValue) \(flattenedAttributes)>"
+                    : "<\(self.rawValue)>"
             } else {
                 return "<\(self.rawValue)>"
             }
