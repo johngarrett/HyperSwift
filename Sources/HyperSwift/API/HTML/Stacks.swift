@@ -41,6 +41,9 @@ public struct HStackBuilder {
     public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
         return HTMLComponent(.empty, components)
     }
+    public static func buildBlock(_ components: String...) -> HTMLElement {
+        return HTMLComponent(.empty, components.map { RawHTML($0) })
+    }
 }
 
 public class VStack: HTMLComponent { }
@@ -84,5 +87,8 @@ public extension VStack {
 public struct VStackBuilder {
     public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
         return HTMLComponent(.empty, components)
+    }
+    public static func buildBlock(_ components: String...) -> HTMLElement {
+        return HTMLComponent(.empty, components.map { RawHTML($0) })
     }
 }
