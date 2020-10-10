@@ -2,6 +2,7 @@ import Foundation
 
 public struct CSSStyleSheet {
     public static var stylesheet: [String: [String]] = ["": [""]]
+    private static var rawCssString: String = ""
     public static func add(_ linearKV: String, for className: String) {
         stylesheet[className] = stylesheet[className] ?? [""]
         // temporary, TODO: switch to dictionary
@@ -12,6 +13,10 @@ public struct CSSStyleSheet {
     
     public static func add(_ linearKV: String, for tag: HTMLTag, parent parentClass: String) {
         add(linearKV, for: "\(parentClass)")
+    }
+    
+    public static func add(css: String) {
+        rawCssString.append(css)
     }
     
     public static func generateStyleSheet() -> String {
@@ -26,6 +31,7 @@ public struct CSSStyleSheet {
             )
             output.append("\n}\n")
         }
+        output.append(rawCssString)
         
         return output
     }

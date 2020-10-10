@@ -121,6 +121,11 @@ public extension HTMLComponent {
     func rawCSS(_ key: String, _ value: String) -> HTMLComponent {
         updateComponent(with: "\(key): \(value);")
     }
+    
+    func inject(_ css: String) -> HTMLComponent {
+        CSSStyleSheet.add(css: css)
+        return self
+    }
 
     func padding(
         top: Double=0, right: Double=0, bottom: Double=0, left: Double=0, _ type: CSSUnit.UnitType = .px
