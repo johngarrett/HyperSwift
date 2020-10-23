@@ -21,7 +21,6 @@ public enum ObjectFit: String {
 public enum DisplayType: String {
     case grid
     case block
-    /// this will center the view within its parent
     case inlineBlock = "inline-block"
     case flex
 }
@@ -68,7 +67,7 @@ public enum WhiteSpace: String {
 }
 
 public enum Overflow: String {
-    case hidden
+    case visible, hidden, scroll, auto
 }
 
 public enum BorderType: String {

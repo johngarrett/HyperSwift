@@ -23,6 +23,7 @@ public enum HTMLTag: String {
     case br
     case img
     case div
+    case button
     case footer
     
     case empty
