@@ -30,12 +30,6 @@ public class Image: HTMLComponent {
     }
 }
 
-public class Link: SimpleHTMLComponent {
-    public init( _ text: String, cssClass: String = "", href: String) {
-        super.init(text, attributes: ["href": href], cssClass: cssClass, .a)
-    }
-}
-
 public class RawHTML: HTMLElement {
     public var tag: HTMLTag = .empty
     public var className: String = ""

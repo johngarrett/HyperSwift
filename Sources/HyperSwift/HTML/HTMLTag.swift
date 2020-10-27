@@ -25,6 +25,7 @@ public enum HTMLTag: String {
     case div
     case button
     case footer
+    case input
     
     case empty
 
@@ -53,7 +54,7 @@ public enum HTMLTag: String {
     
     public func closing() -> String {
         switch self {
-        case .empty, .img:
+        case .empty, .img, .input:
             return ""
         case .comment:
             return "-->"

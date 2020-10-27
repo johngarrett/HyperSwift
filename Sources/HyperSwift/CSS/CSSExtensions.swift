@@ -6,6 +6,7 @@ public extension HTMLComponent {
      ) -> HTMLComponent {
         updateComponent(with: "margin: \(CSSUnit(top, type)) \(CSSUnit(right, type)) \(CSSUnit(bottom, type)) \(CSSUnit(left, type));")
     }
+    
     func margin(_ all: Double=0, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         updateComponent(with: "margin: \(CSSUnit(all, type));")
     }
@@ -137,6 +138,7 @@ public extension HTMLComponent {
     }
     
     func updateComponent(with style: String) -> HTMLComponent {
+
         if className != "" {
             if self.tag != .div && self.tag != .empty {
                 CSSStyleSheet.add(style, for: self.tag, parent: className)
