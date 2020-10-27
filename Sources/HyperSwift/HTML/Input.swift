@@ -18,7 +18,6 @@ public class Input: HTMLComponent {
         step: String="",
         _ attributes: [String: String] = ["": ""]) {
         let combinedAttributes = attributes.merging([
-            "id": id,
             "type": type.rawValue,
             "value": value,
             "min": min,
@@ -30,6 +29,7 @@ public class Input: HTMLComponent {
         super.init(
             .input,
             cssClass: cssClass,
+            id: id,
             attributes: combinedAttributes,
             nil
         )
