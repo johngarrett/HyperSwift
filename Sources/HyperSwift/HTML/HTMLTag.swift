@@ -10,8 +10,9 @@ public enum HTMLTag: String {
     case a
     case em
     case code
+    case small
     case bold = "b"
-    
+
     case nav
     case body
     case link
