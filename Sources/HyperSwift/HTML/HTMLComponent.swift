@@ -2,7 +2,8 @@ import Foundation
 
 open class HTMLComponent: HTMLElement {
     public var tag: HTMLTag
-    public var className: String
+    public var cssClass: String
+    public var id: String
     public var attributes: [String: String]
     public var childComponents: [HTMLElement]?
     public var styles: [CSSStyle] = []
@@ -11,59 +12,68 @@ open class HTMLComponent: HTMLElement {
         tag.opening(attributes) + (childComponents?.map { $0.render() }.joined() ?? "") + tag.closing()
     }
     
-    public init(_ tag: HTMLTag, cssClass: String = "", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
+    public init(_ tag: HTMLTag, cssClass: String="", id: String="", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
         self.tag = tag
-        self.attributes = attributes
         self.childComponents = childComponents
-        self.className = cssClass
-        self.attributes["class"] = cssClass
-        if cssClass != "" {
-            saveAttributes()
-        }
+        self.cssClass = cssClass
+        self.id = id
+        self.attributes = attributes.merging(["class": cssClass, "id": id], uniquingKeysWith: {$1})
     }
     
     public init(_ element: HTMLElement) {
         self.tag = element.tag
-        self.className = element.className
+        self.cssClass = element.cssClass
+        self.id = element.id
         self.attributes = element.attributes
         self.childComponents = element.childComponents
-    }
-    
-    private func saveAttributes() {
-//        for attribute in attributes {
-//            if self.tag != .div && self.tag != .empty {
-//                CSSStyleSheet.add("\(attribute.key):\(attribute.value);", for: self.tag, parent: className)
-//            } else {
-//                CSSStyleSheet.add(style, for: className)
-//            }
-//        }
     }
 }
 
 public extension HTMLComponent {
-    convenience init(_ tag: HTMLTag? = nil, cssClass: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> HTMLElement) {
+    convenience init(
+        _ tag: HTMLTag,
+        cssClass: String="",
+        id: String="",
+        attributes: [String: String]=["":""],
+        @HTMLComponentBuilder _ component: () -> HTMLElement
+    ) {
         self.init(
-            tag ?? HTMLTag.empty,
-            cssClass: cssClass ?? "",
-            attributes: attributes ?? ["":""],
+            tag,
+            cssClass: cssClass,
+            id: id,
+            attributes: attributes,
             [component()]
         )
     }
     
-    convenience init(_ tag: HTMLTag, cssClass: String? = nil,  attributes: [String: String]? = nil, @HTMLComponentBuilder _ components: () -> [HTMLElement]) {
+    convenience init(
+        _ tag: HTMLTag,
+        cssClass: String="",
+        id: String="",
+        attributes: [String: String]=["":""],
+        @HTMLComponentBuilder _ components: () -> [HTMLElement]
+    ) {
            self.init(
                tag,
-               cssClass: cssClass ?? "",
-               attributes: attributes ?? ["":""],
+               cssClass: cssClass,
+               id: id,
+               attributes: attributes,
                components()
            )
        }
     
-    convenience init(_ tag: HTMLTag, cssClass: String? = nil, attributes: [String: String]? = nil, @HTMLComponentBuilder _ component: () -> String) {
+    convenience init(
+        _ tag: HTMLTag,
+        cssClass: String="",
+        id: String="",
+        attributes: [String: String] = ["":""],
+        @HTMLComponentBuilder _ component: () -> String
+    ) {
         self.init(
             tag,
-            cssClass: cssClass ?? "",
-            attributes: attributes ?? ["":""],
+            cssClass: cssClass,
+            id: id,
+            attributes: attributes,
             [RawHTML(component())]
         )
     }
@@ -87,6 +97,6 @@ public struct HTMLComponentBuilder {
 
  extension HTMLComponent: Equatable {
     public static func == (lhs: HTMLComponent, rhs: HTMLComponent) -> Bool {
-        return lhs.className == rhs.className
+        return lhs.cssClass == rhs.cssClass
     }
 }

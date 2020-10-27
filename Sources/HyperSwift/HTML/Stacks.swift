@@ -4,13 +4,14 @@ public class HStack: HTMLComponent { }
 public extension HStack {
     convenience init(
         _ cssClass: String = "",
+        id: String="",
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
         @HStackBuilder _ children: () -> [HTMLElement]
     ) {
         self.init(
-            Div(cssClass, children: children())
+            Div(cssClass, id: id, children: children())
                 .display(.flex)
                 .justifyContent(justification)
                 .alignItems(alignment)
@@ -20,13 +21,14 @@ public extension HStack {
     }
     convenience init(
         _ cssClass: String = "",
+        id: String="",
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
         @HStackBuilder _ child: () -> HTMLElement
     ) {
         self.init(
-            Div(cssClass, children: [child()])
+            Div(cssClass, id: id, children: [child()])
                 .display(.flex)
                 .justifyContent(justification)
                 .alignItems(alignment)
@@ -57,13 +59,14 @@ public class VStack: HTMLComponent { }
 public extension VStack {
     convenience init(
         _ cssClass: String = "",
+        id: String="",
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
         @VStackBuilder _ children: () -> [HTMLElement]
     ) {
         self.init(
-            Div(cssClass, children: children())
+            Div(cssClass, id: id, children: children())
                 .display(.flex)
                 .justifyContent(justification)
                 .alignItems(alignment)
@@ -73,13 +76,14 @@ public extension VStack {
     }
     convenience init(
         _ cssClass: String = "",
+        id: String="",
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
         @VStackBuilder _ child: () -> HTMLElement
     ) {
         self.init(
-            Div(cssClass, children: [child()])
+            Div(cssClass, id: id, children: [child()])
                 .display(.flex)
                 .justifyContent(justification)
                 .alignItems(alignment)

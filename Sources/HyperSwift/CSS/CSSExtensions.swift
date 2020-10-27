@@ -139,11 +139,11 @@ public extension HTMLComponent {
     
     func updateComponent(with style: String) -> HTMLComponent {
 
-        if className != "" {
+        if cssClass != "" {
             if self.tag != .div && self.tag != .empty {
-                CSSStyleSheet.add(style, for: self.tag, parent: className)
+                CSSStyleSheet.add(style, for: self.tag, parent: cssClass)
             } else {
-                CSSStyleSheet.add(style, for: className)
+                CSSStyleSheet.add(style, for: cssClass)
             }
         } else {
             var newAttributes = self.attributes

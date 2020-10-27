@@ -1,38 +1,39 @@
 import Foundation
 
 public class Button: HTMLComponent {
-    public init(_ cssClass: String, _ attributes: [String: String] = ["": ""], children: [HTMLElement]? = nil) {
-        super.init(.button, cssClass: cssClass, attributes: attributes, children)
+    public init(_ cssClass: String, id: String, _ attributes: [String: String] = ["": ""], children: [HTMLElement]? = nil) {
+        super.init(.button, cssClass: cssClass, id: id, attributes: attributes, children)
     }
 }
 
 public extension Button {
     convenience init(
         _ cssClass: String = "",
-        onClick: String = "",
+        id: String = "",
+        onClick: String? = nil,
         attributes:[String:String] = ["":""],
         @ButtonBuilder _ children: () -> [HTMLElement]
     ) {
         var mutAttr = attributes
-        if onClick.count != 0 {
-            mutAttr["onClick"] = onClick
+        if let action = onClick {
+            mutAttr["onClick"] = action
         }
-        self.init(cssClass, mutAttr, children: children())
+        self.init(cssClass, id: id, mutAttr, children: children())
     }
-    convenience init(_ cssClass: String="", onClick: String = "", attributes:[String:String] = ["":""], @ButtonBuilder _ child: () -> HTMLElement) {
+    convenience init(_ cssClass: String="", id: String="", onClick: String? = nil, attributes:[String:String] = ["":""], @ButtonBuilder _ child: () -> HTMLElement) {
         var mutAttr = attributes
-        if onClick.count != 0 {
-            mutAttr["onClick"] = onClick
+        if let action = onClick {
+            mutAttr["onClick"] = action
         }
-        self.init(cssClass, mutAttr, children: [child()])
+        self.init(cssClass, id: id, mutAttr, children: [child()])
     }
     
-    convenience init(_ cssClass: String = "", onClick: String = "", attributes:[String:String] = ["":""], @ButtonBuilder _ child: () -> String) {
+    convenience init(_ cssClass: String = "", id: String = "", onClick: String? = nil, attributes:[String:String] = ["":""], @ButtonBuilder _ child: () -> String) {
         var mutAttr = attributes
-        if onClick.count != 0 {
-            mutAttr["onClick"] = onClick
+        if let action = onClick {
+            mutAttr["onClick"] = action
         }
-        self.init(cssClass, mutAttr, children: [RawHTML(child())])
+        self.init(cssClass, id: id, mutAttr, children: [RawHTML(child())])
     }
 }
 

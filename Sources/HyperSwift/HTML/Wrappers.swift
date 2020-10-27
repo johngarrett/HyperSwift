@@ -32,7 +32,8 @@ public class Image: HTMLComponent {
 
 public class RawHTML: HTMLElement {
     public var tag: HTMLTag = .empty
-    public var className: String = ""
+    public var cssClass: String = ""
+    public var id: String = ""
     public var attributes: [String : String] = ["":""]
     public var childComponents: [HTMLElement]? = nil
     public let rawString: String
