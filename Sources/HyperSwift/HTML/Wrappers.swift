@@ -12,12 +12,6 @@ open class SimpleHTMLComponent: HTMLComponent {
     }
 }
 
-public class Paragraph: SimpleHTMLComponent {
-    public init(cssClass: String = "", _ text: String) {
-        super.init(text, cssClass: cssClass, .paragraph)
-    }
-}
-
 public class Comment: SimpleHTMLComponent {
     public init(_ text: String) {
         super.init(text, .comment)
