@@ -1,7 +1,7 @@
 import Foundation
 
-enum InputType: String {
-    case button, checkbox, color, date, email, file, hidden,
+public enum InputType: String {
+    case button, checkbox, color, date, email, file, hidden, string,
     image, month, number, password, radio, range, reset, search,
     submit, tel, text, time, url, week, datetimeLocal = "datetime-local"
 }
@@ -9,6 +9,7 @@ enum InputType: String {
 public class Input: HTMLComponent {
     public init(
         _ cssClass: String="",
+        type: InputType,
         id: String,
         value: String="",
         min: String="",
@@ -18,6 +19,7 @@ public class Input: HTMLComponent {
         _ attributes: [String: String] = ["": ""]) {
         let combinedAttributes = attributes.merging([
             "id": id,
+            "type": type.rawValue,
             "value": value,
             "min": min,
             "max": max,
