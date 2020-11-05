@@ -6,8 +6,12 @@ public struct CSSStyleSheet {
     public static func add(_ linearKV: String, for className: String) {
         stylesheet[className] = stylesheet[className] ?? [""]
         // temporary, TODO: switch to dictionary
-        if !stylesheet[className]!.contains(linearKV) {
-            stylesheet[className]!.append(linearKV)
+        if stylesheet[className] != nil {
+            if !stylesheet[className]!.contains(linearKV) {
+                stylesheet[className]!.append(linearKV)
+            }
+        } else {
+            print("className \(className) was nil in stylesheet")
         }
     }
     
