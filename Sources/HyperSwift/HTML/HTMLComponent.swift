@@ -17,7 +17,12 @@ open class HTMLComponent: HTMLElement {
         self.childComponents = childComponents
         self.cssClass = cssClass
         self.id = id
-        self.attributes = attributes.merging(["class": cssClass, "id": id], uniquingKeysWith: {$1})
+        self.attributes = attributes.merging(
+            ["id": id, "class": cssClass],
+            uniquingKeysWith: {
+                    [$0, $1].filter { !$0.isEmpty }.joined(separator: " ")
+            }
+        )
     }
     
     public init(_ element: HTMLElement) {

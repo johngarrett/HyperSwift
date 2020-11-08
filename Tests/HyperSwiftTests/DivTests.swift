@@ -12,11 +12,10 @@ final class DivTests: XCTestCase {
             "<div class=\"class-name\"></div>"
         )
         
-        // order keeps swapping
-//        XCTAssertEqual(
-//            Div("class-name", ["width": "100%"]).render(),
-//            "<div class=\"class-name\" width=\"100%\"></div>"
-//        )
+        XCTAssertEqual(
+            Div("class-name", ["width": "100%"]).render(),
+            "<div class=\"class-name\" width=\"100%\"></div>"
+        )
     }
     func testStringFunctionBuilder() {
         XCTAssertEqual(

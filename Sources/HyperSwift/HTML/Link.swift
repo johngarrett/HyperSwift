@@ -2,7 +2,17 @@ import Foundation
 
 public class Link: HTMLComponent {
     public init(_ cssClass: String, id: String="", href: String, _ attributes:[String: String] = ["": ""], children: [HTMLElement]? = nil) {
-        super.init(.a, cssClass: cssClass, attributes: attributes.merging(["id": id, "href": href], uniquingKeysWith: { $1 }), children)
+        super.init(
+            .a,
+            cssClass: cssClass,
+            attributes: attributes
+                .merging(
+                    ["id": id, "href": href],
+                    uniquingKeysWith: {
+                        [$0, $1].filter { !$0.isEmpty }.joined(separator: " ")
+                    }),
+            children
+        )
     }
 }
 
