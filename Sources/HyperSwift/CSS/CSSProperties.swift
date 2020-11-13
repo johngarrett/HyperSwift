@@ -1,5 +1,9 @@
 import Foundation
 
+public enum FrameDirection {
+    case horizontal, vertical, all
+}
+
 public enum TextAlign: String {
     case center, left, right, justify
 }
