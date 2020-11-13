@@ -1,28 +1,34 @@
 import Foundation
 
 public enum TextAlign: String {
-    case center
-    case left
-    case right
+    case center, left, right, justify
 }
 
 public enum FontWeight: String {
-    case normal, bold, bolder, lighter,
-    onehundred = "100", twohundred = "200", threehundred = "300",
-    fourhundred = "400", fiveehundred = "500", sixhundred = "600",
-    sevenhundred = "700", eighthundred = "800", ninehundred = "900",
-    initial, inherit
+    case normal, medium, bold, bolder, lighter
+    case initial, inherit
+    case onehundred = "100",
+         twohundred = "200",
+         threehundred = "300",
+         fourhundred = "400",
+         fiveehundred = "500",
+         sixhundred = "600",
+         sevenhundred = "700",
+         eighthundred = "800",
+         ninehundred = "900"
 }
 
 public enum ObjectFit: String {
-    case cover
+    case cover, fill, contain, none, scaleDown = "scale-down"
 }
 
 public enum DisplayType: String {
-    case grid
-    case block
-    case inlineBlock = "inline-block"
-    case flex
+    case inline, contents
+    case grid, inlineGrid = "inline-grid"
+    case block, inlineBlock = "inline-block"
+    case flex, inlineFlex = "inline-flex"
+    case table, inlineTable = "inline-table"
+    case none, hidden, inherit
 }
 
 public enum Justification: String {
@@ -58,12 +64,16 @@ public enum TextDecoration: String {
 }
 
 public enum WordWrap: String {
-    case brk = "break-word"
+    case breakWord = "break-word"
     case normal
+    case inital, inherit
 }
 
 public enum WhiteSpace: String {
     case nowrap
+    case normal
+    case pre, preLine = "pre-line", preWrap = "pre-wrap"
+    case initial, inherit
 }
 
 public enum Overflow: String {
@@ -71,6 +81,6 @@ public enum Overflow: String {
 }
 
 public enum BorderType: String {
-    case dotted, dashed, solid, double, groove,
-        ridge, inset, outset, none, hidden
+    case dotted, dashed, solid, double, groove, ridge, inset, outset
+    case none, hidden
 }
