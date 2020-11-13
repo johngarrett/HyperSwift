@@ -24,6 +24,16 @@ public struct CSSStyleSheet {
     }
     
     public static func generateStyleSheet() -> String {
+        /** UNTESTED:
+         stylesheet
+         .filter { !$0.key.isEmpty && $0.value.count != 0 }
+         .map { (cssClass, styles) in
+         ".\(cssClass) {\n\t" + styles.joined(separator: "\n\t")
+         }
+         .joined(separator: "\n")
+         .appending("\n}\n")
+         */
+        
         var output = ""
         for (className, styles) in stylesheet {
             if className == "" {
