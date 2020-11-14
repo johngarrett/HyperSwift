@@ -17,8 +17,8 @@ public extension HTMLComponent {
         )
     }
     func padding(
-        _ value: Double=0,
-        _ direction: FrameDirection,
+        _ value: Double,
+        _ direction: FrameDirection = .all,
         _ type: CSSUnit.UnitType = .px
     ) -> HTMLComponent {
         switch direction {
