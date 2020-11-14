@@ -17,7 +17,7 @@ public extension HTMLComponent {
         )
     }
 
-    func margin(_ value: Double, _ direction: FrameDirection = .all, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func margin(_ value: Double, _ type: CSSUnit.UnitType = .px, for direction: FrameDirection = .all) -> HTMLComponent {
         switch direction {
         case .all:
             return add(style: CSSStyle("margin", CSSUnit(value, type)))
