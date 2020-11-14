@@ -20,6 +20,16 @@ public struct CSSStyleSheet {
     }
     
     public static func add(_ styles: [CSSStyle], to cssClass: String) {
+        // check for duplicates
+        var keys = [""]
+        styles.forEach { style in
+            if keys.contains(style.key) {
+                print("[StyleSheet]: WARNING! Duplicate occurance for key: \(style.key) in \(cssClass)")
+                print("\t\(styles.filter({ $0.key == style.key}))")
+            } else {
+                keys.append(style.key)
+            }
+        }
         add(styles.flattened() ?? "", to: cssClass)
     }
 
