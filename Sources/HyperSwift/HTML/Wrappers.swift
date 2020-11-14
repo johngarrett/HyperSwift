@@ -31,6 +31,9 @@ public class RawHTML: HTMLElement {
     public var attributes: [String : String] = ["":""]
     public var childComponents: [HTMLElement]? = nil
     public let rawString: String
+    public var description: String {
+        self.render()
+    }
     
     public func render() -> String {
         self.rawString

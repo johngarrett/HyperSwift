@@ -7,6 +7,9 @@ open class HTMLComponent: HTMLElement {
     public var attributes: [String: String]
     public var childComponents: [HTMLElement]?
     public var styles: [CSSStyle] = []
+    public var description: String {
+        self.render()
+    }
 
     open func render() -> String {
         tag.opening(attributes) + (childComponents?.map { $0.render() }.joined() ?? "") + tag.closing()
