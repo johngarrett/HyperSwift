@@ -3,7 +3,7 @@ import Foundation
 public struct CSSStyleSheet {
     public static var stylesheet: [String: [String]] = ["": [""]]
     private static var rawCssString: String = ""
-    public static func add(_ linearKV: String, for className: String) {
+    public static func add(_ linearKV: String, to className: String) {
         stylesheet[className] = stylesheet[className] ?? [""]
         // temporary, TODO: switch to dictionary
         if stylesheet[className] != nil {
@@ -16,9 +16,13 @@ public struct CSSStyleSheet {
     }
     
     public static func add(_ linearKV: String, for tag: HTMLTag, parent parentClass: String) {
-        add(linearKV, for: "\(parentClass)")
+        add(linearKV, to: "\(parentClass)")
     }
     
+    public static func add(_ styles: [CSSStyle], to cssClass: String) {
+        add(styles.flattened() ?? "", to: cssClass)
+    }
+
     public static func add(css: String) {
         rawCssString.append(css)
     }

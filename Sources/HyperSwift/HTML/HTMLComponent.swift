@@ -12,7 +12,9 @@ open class HTMLComponent: HTMLElement {
     }
 
     open func render() -> String {
-        tag.opening(with: attributes, and: styles)
+        if !cssClass.isEmpty { CSSStyleSheet.add(styles, to: cssClass) }
+
+        return tag.opening(with: attributes, and: cssClass.isEmpty ? styles: nil)
             + (childComponents?.map { $0.render() }.joined() ?? "")
             + tag.closing()
     }
