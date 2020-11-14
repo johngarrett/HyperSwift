@@ -5,7 +5,16 @@ public extension HTMLComponent {
         top: Double=0, right: Double=0, bottom: Double=0, left: Double=0,
         _ type: CSSUnit.UnitType = .px
     ) -> HTMLComponent {
-        updateComponent(with: "padding:\(CSSUnit(top, type)) \(CSSUnit(right, type)) \(CSSUnit(bottom, type)) \(CSSUnit(left, type));")
+        add(
+            style: CSSStyle(
+                "padding",
+                values:
+                    CSSUnit(top, type),
+                    CSSUnit(right, type),
+                    CSSUnit(bottom, type),
+                    CSSUnit(left, type)
+            )
+        )
     }
     func padding(
         _ value: Double=0,
@@ -14,11 +23,11 @@ public extension HTMLComponent {
     ) -> HTMLComponent {
         switch direction {
         case .all:
-            return updateComponent(with: "padding: \(CSSUnit(value, type));")
+            return add(style: CSSStyle("padding", CSSUnit(value, type)))
         case .horizontal:
-            return updateComponent(with: "padding: inital \(CSSUnit(value, type));")
+            return add(style: CSSStyle("padding", "inital \(CSSUnit(value, type))"))
         case .vertical:
-            return updateComponent(with: "padding: \(CSSUnit(value, type)) inital;")
+            return add(style: CSSStyle("padding", "\(CSSUnit(value, type)) inital"))
         }
     }
 }

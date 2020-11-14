@@ -6,11 +6,11 @@ final class SlackTests: XCTestCase {
     
 
     func isValid(_ stack: HStack) -> Bool {
-        stack.render().contains("display: flex") && stack.render().contains("direction: row")
+        stack.render().contains("display:flex") && stack.render().contains("direction:row")
     }
     
     func isValid(_ stack: VStack) -> Bool {
-        stack.render().contains("display: flex") && stack.render().contains("direction: column")
+        stack.render().contains("display:flex") && stack.render().contains("direction:column")
     }
     
     func testBasicInitalization() {

@@ -1,7 +1,25 @@
 import Foundation
 
 public extension HTMLComponent {
-    func updateComponent(with style: String) -> HTMLComponent {
+    func add(style: CSSStyle) -> HTMLComponent {
+        styles.append(style)
+        legacyInsert(style: String(describing: style))
+        return self
+    }
+    func add(styles: CSSStyle...) -> HTMLComponent {
+        self.styles.append(contentsOf: styles)
+        styles.forEach { style in
+            legacyInsert(style: String(describing: style))
+        }
+        return self
+    }
+    
+    func inject(_ css: String) -> HTMLComponent {
+        CSSStyleSheet.add(css: css)
+        return self
+    }
+    
+    private func legacyInsert(style: String) {
         if cssClass != "" {
             if self.tag != .div && self.tag != .empty {
                 CSSStyleSheet.add(style, for: self.tag, parent: cssClass)
@@ -17,14 +35,5 @@ public extension HTMLComponent {
             }
             self.attributes = newAttributes
         }
-        return self
-    }
-    func rawCSS(_ key: String, _ value: String) -> HTMLComponent {
-        updateComponent(with: "\(key): \(value);")
-    }
-    
-    func inject(_ css: String) -> HTMLComponent {
-        CSSStyleSheet.add(css: css)
-        return self
     }
 }

@@ -2,90 +2,100 @@ import Foundation
 
 public extension HTMLComponent {
     func position(top: Int, left: Int) -> HTMLComponent {
-        updateComponent(with: "top: \(top); left: \(left);")
+        add(styles: CSSStyle("top", top), CSSStyle("left", left))
     }
     
     func zIndex(_ index: Int) -> HTMLComponent {
-        updateComponent(with: "z-index: \(index);")
+        add(style: CSSStyle("z-index", index))
     }
     
     func color(_ color: CSSColor) -> HTMLComponent {
-        updateComponent(with: "color:\(color.description);")
+        add(style: CSSStyle("color", color))
     }
 
     func shadow(x: Int=0, y:Int=0, spread:Int=0, blur:Int = 0, color: CSSColor) -> HTMLComponent {
-        updateComponent(with: "box-shadow:\(x)px \(y)px \(blur)px \(spread)px \(color.description);")
+        add(style: CSSStyle("box-shadow", "\(x)px \(y)px \(blur)px \(spread)px \(color.description)"))
     }
     
     func wordWrap(_ wrap: WordWrap) -> HTMLComponent {
-        updateComponent(with: "word-wrap: \(wrap.rawValue);")
+        add(style: CSSStyle("word-wrap", wrap.rawValue))
     }
     func overflow(_ overflow: Overflow) -> HTMLComponent {
-        updateComponent(with: "overflow: \(overflow.rawValue);")
+        add(style: CSSStyle("overflow", overflow.rawValue))
     }
 
-    func objectFit(_ of: ObjectFit) -> HTMLComponent {
-        updateComponent(with: "object-fit:\(of.rawValue);")
+    func objectFit(_ fit: ObjectFit) -> HTMLComponent {
+        add(style: CSSStyle("object-fit", fit.rawValue))
     }
     
-    func whiteSpace(_ wp: WhiteSpace) -> HTMLComponent {
-        updateComponent(with: "white-space: \(wp.rawValue);")
+    func whiteSpace(_ space: WhiteSpace) -> HTMLComponent {
+        add(style: CSSStyle("white-space", space.rawValue))
     }
     
-    func textAlign(_ ta: TextAlign) -> HTMLComponent {
-           updateComponent(with: "text-align: \(ta.rawValue);")
-       }
+    func textAlign(_ alignment: TextAlign) -> HTMLComponent {
+        add(style: CSSStyle("text-align", alignment.rawValue))
+    }
     
-    func textDecoration(_ td: TextDecoration) -> HTMLComponent {
-        updateComponent(with: "text-decoration: \(td.rawValue);")
+    func textDecoration(_ decoration: TextDecoration) -> HTMLComponent {
+        add(style: CSSStyle("text-decoration", decoration.rawValue))
     }
 
     func backgroundColor(_ color:CSSColor) -> HTMLComponent {
-        updateComponent(with: "background-color: \(color.description);")
+        add(style: CSSStyle("background-color", color))
     }
     
     func border(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
-        updateComponent(with: "border: \(radius)px \(type.rawValue) \(color.description);")
+        add(style: CSSStyle("border", "\(radius)px \(type.rawValue) \(color.description)"))
     }
     func borderRight(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
-        updateComponent(with: "border-right: \(radius)px \(type.rawValue) \(color.description);")
+        add(style: CSSStyle("border-right", "\(radius)px \(type.rawValue) \(color.description)"))
     }
     func borderLeft(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
-        updateComponent(with: "border-left: \(radius)px \(type.rawValue) \(color.description);")
+        add(style: CSSStyle("border-left", "\(radius)px \(type.rawValue) \(color.description)"))
     }
     func borderTop(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
-        updateComponent(with: "border-top: \(radius)px \(type.rawValue) \(color.description);")
+        add(style: CSSStyle("border-top", "\(radius)px \(type.rawValue) \(color.description)"))
     }
     func borderBottom(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
-        updateComponent(with: "border-bottom: \(radius)px \(type.rawValue) \(color.description);")
+        add(style: CSSStyle("border-bottom", "\(radius)px \(type.rawValue) \(color.description)"))
     }
     func borderRadius(_ radius: Double) -> HTMLComponent {
-        updateComponent(with: "border-radius: \(radius)px;")
+        add(style: CSSStyle("border-radius", "\(radius)px"))
     }
     func display(_ dt: DisplayType) -> HTMLComponent {
-        updateComponent(with: "display: \(dt.rawValue);")
+        add(style: CSSStyle("display", dt.rawValue))
     }
     func justifyContent(_ jst: Justification) -> HTMLComponent {
-        updateComponent(with: "justify-content: \(jst.rawValue);")
+        add(style: CSSStyle("justify-content", jst.rawValue))
     }
     func alignItems(_ alignment: Alignment) -> HTMLComponent {
-        updateComponent(with: "align-items: \(alignment.rawValue);")
+        add(style: CSSStyle("align-items", alignment.rawValue))
     }
     func flexDirection(_ direction: FlexDirection) -> HTMLComponent {
-        updateComponent(with: "flex-direction: \(direction.rawValue);")
+        add(style: CSSStyle("flex-direction", direction.rawValue))
     }
     func flexWrap(_ wrap: FlexWrap) -> HTMLComponent {
-        updateComponent(with: "flex-wrap: \(wrap.rawValue);")
+        add(style: CSSStyle("flex-wrap", wrap.rawValue))
     }
 
     func gridGap(_ space: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
-        updateComponent(with: "grid-gap: \(CSSUnit(space, type));")
+        add(style: CSSStyle("grid-gap", CSSUnit(space, type)))
     }
     func font(weight: FontWeight, size: Double, family: String) -> HTMLComponent {
-        updateComponent(with: "font-weight:\(weight.rawValue); font-size:\(size)px; font-family:\(family);")
+        add(
+            styles:
+                CSSStyle("font-weight", weight.rawValue),
+                CSSStyle("font-size", "\(size)px"),
+                CSSStyle("font-family", family)
+        )
     }
     
     func font(weight: String, size: Double, family: String) -> HTMLComponent {
-        updateComponent(with: "font-weight:\(weight); font-size:\(size)px; font-family:\(family);")
+        add(
+            styles:
+                CSSStyle("font-weight", weight),
+                CSSStyle("font-size", "\(size)px"),
+                CSSStyle("font-family", family)
+        )
     }
 }
