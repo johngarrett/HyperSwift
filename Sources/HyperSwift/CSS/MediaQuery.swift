@@ -19,10 +19,20 @@ public struct MediaQuery: CustomStringConvertible {
     let type: MediaType?
     let feature: MediaFeature
     let value: String
+    let items = [String: [CSSStyle]]()
     
     public var description: String {
         """
         @media \(type?.rawValue ?? "") \(feature.rawValue)(\(value)) {
+            \(
+                items.map { cssClass, styles in
+                    """
+                    \(cssClass) {\n
+                    \t \(styles.flattened(separator: "\n\t") ?? "/* nothing */")
+                    }
+                    """
+                }
+            )
         }
         """
     }
