@@ -30,17 +30,21 @@ public enum HTMLTag: String {
     
     case empty
 
-    public func opening(_ attributes: [String: String] = ["":""]) -> String {
+    public func opening(with attributes: [String: String], and styles: [CSSStyle]?) -> String {
         switch self {
         case .empty:
             return ""
         case .comment:
             return "<\(self.rawValue)"
         default:
-            let attributes = attributes.filter {
+            var attributes = attributes.filter {
                 !$0.key.isEmpty && !$0.value.isEmpty
             }.sorted(by: {$0.key < $1.key }) // arbirarty sort to ensure uniformity
-            
+           
+            if let styles = styles?.flattened() {
+                attributes.append(contentsOf: ["style": styles])
+            }
+
             let flatAttributes = attributes.map { key, value in
                 key + "=\"\(value)\""
             }.joined(separator: " ")

@@ -27,14 +27,14 @@ public extension HStack {
         wrap: FlexWrap = .nowrap,
         @HStackBuilder _ child: () -> HTMLElement
     ) {
-        self.init(
-            Div(cssClass, id: id, children: [child()])
-                .display(.flex)
-                .justifyContent(justification)
-                .alignItems(alignment)
-                .flexDirection(.row)
-                .flexWrap(wrap)
-        )
+        let div = Div(cssClass, id: id, children: [child()])
+            .display(.flex)
+            .justifyContent(justification)
+            .alignItems(alignment)
+            .flexDirection(.row)
+            .flexWrap(wrap)
+        print(div)
+        self.init(div)
     }
 }
 

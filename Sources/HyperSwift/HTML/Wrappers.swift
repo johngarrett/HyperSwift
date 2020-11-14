@@ -8,7 +8,7 @@ open class SimpleHTMLComponent: HTMLComponent {
     }
     
     override open func render() -> String {
-        self.tag.opening(attributes) + self.text + self.tag.closing()
+        self.tag.opening(with: attributes, and: styles) + self.text + self.tag.closing()
     }
 }
 
@@ -28,18 +28,16 @@ public class RawHTML: HTMLElement {
     public var tag: HTMLTag = .empty
     public var cssClass: String = ""
     public var id: String = ""
+    public var styles: [CSSStyle] = []
     public var attributes: [String : String] = ["":""]
     public var childComponents: [HTMLElement]? = nil
-    public let rawString: String
-    public var description: String {
-        self.render()
-    }
-    
+    public var description: String
+
     public func render() -> String {
-        self.rawString
+        description
     }
     
-    public init(_ rawString: String) {
-        self.rawString = rawString
+    public init(_ html: String) {
+        self.description = html
     }
 }

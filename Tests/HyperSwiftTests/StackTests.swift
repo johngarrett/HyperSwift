@@ -14,7 +14,7 @@ final class SlackTests: XCTestCase {
     }
     
     func testBasicInitalization() {
-        XCTAssertTrue(isValid(HStack { }))
-        XCTAssertTrue(isValid(VStack { }))
+        XCTAssertTrue(isValid(HStack { Paragraph("hello") }))
+        XCTAssertTrue(isValid(VStack { Paragraph("hello") }))
     }
 }

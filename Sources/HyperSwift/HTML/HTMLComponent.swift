@@ -12,7 +12,9 @@ open class HTMLComponent: HTMLElement {
     }
 
     open func render() -> String {
-        tag.opening(attributes) + (childComponents?.map { $0.render() }.joined() ?? "") + tag.closing()
+        tag.opening(with: attributes, and: styles)
+            + (childComponents?.map { $0.render() }.joined() ?? "")
+            + tag.closing()
     }
     
     public init(_ tag: HTMLTag, cssClass: String="", id: String="", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
@@ -34,6 +36,7 @@ open class HTMLComponent: HTMLElement {
         self.id = element.id
         self.attributes = element.attributes
         self.childComponents = element.childComponents
+        self.styles = element.styles
     }
 }
 

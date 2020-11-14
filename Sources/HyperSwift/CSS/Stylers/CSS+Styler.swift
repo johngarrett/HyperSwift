@@ -20,6 +20,7 @@ public extension HTMLComponent {
     }
     
     private func legacyInsert(style: String) {
+        return
         if cssClass != "" {
             if self.tag != .div && self.tag != .empty {
                 CSSStyleSheet.add(style, for: self.tag, parent: cssClass)
