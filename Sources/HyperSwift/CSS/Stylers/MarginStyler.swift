@@ -22,9 +22,9 @@ public extension HTMLComponent {
         case .all:
             return add(style: CSSStyle("margin", CSSUnit(value, type)))
         case .horizontal:
-            return add(style: CSSStyle("margin", "inital \(CSSUnit(value, type))"))
+            return add(style: CSSStyle("margin", "0 \(CSSUnit(value, type))"))
         case .vertical:
-            return add(style: CSSStyle("margin", "\(CSSUnit(value, type)) inital"))
+            return add(style: CSSStyle("margin", "\(CSSUnit(value, type)) 0"))
         }
     }
 }

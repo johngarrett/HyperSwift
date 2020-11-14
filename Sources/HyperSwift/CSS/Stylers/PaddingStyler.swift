@@ -25,9 +25,9 @@ public extension HTMLComponent {
         case .all:
             return add(style: CSSStyle("padding", CSSUnit(value, type)))
         case .horizontal:
-            return add(style: CSSStyle("padding", "inital \(CSSUnit(value, type))"))
+            return add(style: CSSStyle("padding", "0 \(CSSUnit(value, type))"))
         case .vertical:
-            return add(style: CSSStyle("padding", "\(CSSUnit(value, type)) inital"))
+            return add(style: CSSStyle("padding", "\(CSSUnit(value, type)) 0"))
         }
     }
 }
