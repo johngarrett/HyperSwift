@@ -1,6 +1,6 @@
 import Foundation
 public extension HTMLComponent {
-    func font(weight: FontWeight?, size: CSSUnit?, family: String?) -> HTMLComponent {
+    func font(weight: FontWeight? = nil, size: CSSUnit? = nil, family: String? = nil) -> HTMLComponent {
         var styles = [CSSStyle]()
         
         if let weight = weight {
@@ -22,7 +22,8 @@ public extension HTMLComponent {
         return newSelf
     }
     
-    func font(weight: String?, size: CSSUnit?, family: String?) -> HTMLComponent {
+    @_disfavoredOverload
+    func font(weight: String? = nil, size: CSSUnit? = nil, family: String? = nil) -> HTMLComponent {
         var styles = [CSSStyle]()
         
         if let weight = weight {
