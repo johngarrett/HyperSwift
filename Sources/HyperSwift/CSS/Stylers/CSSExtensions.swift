@@ -47,6 +47,9 @@ public extension HTMLComponent {
     func backgroundColor(_ color:CSSColor) -> HTMLComponent {
         add(style: CSSStyle("background-color", color))
     }
+    func backgroundColor(_ rawColor:String) -> HTMLComponent {
+        add(style: CSSStyle("background-color", rawColor))
+    }
     
     func border(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("border", "\(radius)px \(type.rawValue) \(color.description)"))
