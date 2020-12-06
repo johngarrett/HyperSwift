@@ -81,6 +81,12 @@ public extension HTMLComponent {
     func flexDirection(_ direction: FlexDirection) -> HTMLComponent {
         add(style: CSSStyle("flex-direction", direction.rawValue))
     }
+    func flexGrow(_ value: Int) -> HTMLComponent {
+        add(style: CSSStyle("flex-grow", value))
+    }
+    func flexShrink(_ value: Int) -> HTMLComponent {
+        add(style: CSSStyle("flex-shrink", value))
+    }
     func flexWrap(_ wrap: FlexWrap) -> HTMLComponent {
         add(style: CSSStyle("flex-wrap", wrap.rawValue))
     }
