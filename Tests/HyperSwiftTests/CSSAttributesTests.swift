@@ -7,19 +7,14 @@ final class CSSAttributesTests: XCTestCase {
     func testBasicAttribute() {
         XCTAssertEqual(base.render(), "<div></div>")
         XCTAssertEqual(
-            base
-                .width(50)
-                .render(),
+            base.width(50).render(),
             "<div style=\"width:50.0px;\"></div>"
         )
     }
     
     func testMultipleAttributes() {
         XCTAssertEqual(
-            base
-                .width(50)
-                .height(50)
-                .render(),
+            base.width(50).height(50).render(),
             "<div style=\"width:50.0px;height:50.0px;\"></div>"
         )
     }

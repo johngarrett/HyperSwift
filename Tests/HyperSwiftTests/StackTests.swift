@@ -3,7 +3,6 @@ import HyperSwift
 
 final class SlackTests: XCTestCase {
     let cssClass = "stack-name"
-    
 
     func isValid(_ stack: HStack) -> Bool {
         stack.render().contains("display:flex") && stack.render().contains("direction:row")

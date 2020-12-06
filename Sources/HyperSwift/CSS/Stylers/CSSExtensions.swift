@@ -12,6 +12,10 @@ public extension HTMLComponent {
     func color(_ color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("color", color))
     }
+    
+    func color(_ rawColor: String) -> HTMLComponent {
+        add(style: CSSStyle("color", CSSColor(rawColor)))
+    }
 
     func shadow(x: Int=0, y:Int=0, spread:Int=0, blur:Int = 0, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("box-shadow", "\(x)px \(y)px \(blur)px \(spread)px \(color.description)"))
@@ -80,22 +84,5 @@ public extension HTMLComponent {
 
     func gridGap(_ space: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("grid-gap", CSSUnit(space, type)))
-    }
-    func font(weight: FontWeight, size: Double, family: String) -> HTMLComponent {
-        add(
-            styles:
-                CSSStyle("font-weight", weight.rawValue),
-                CSSStyle("font-size", "\(size)px"),
-                CSSStyle("font-family", family)
-        )
-    }
-    
-    func font(weight: String, size: Double, family: String) -> HTMLComponent {
-        add(
-            styles:
-                CSSStyle("font-weight", weight),
-                CSSStyle("font-size", "\(size)px"),
-                CSSStyle("font-family", family)
-        )
     }
 }

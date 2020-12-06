@@ -6,14 +6,14 @@ final class HTMLComponentTests: XCTestCase {
     
     func testBasicInitalization() {
         XCTAssertEqual(
-            HTMLComponent(.header1) { }.render(),
+            HTMLComponent(.h1) { }.render(),
             "<h1></h1>"
         )
     }
     
     func testTrailingFunctionBuilder() {
         XCTAssertEqual(
-            HTMLComponent(.header1) { "Text" }.render(),
+            HTMLComponent(.h1) { "Text" }.render(),
             "<h1>Text</h1>"
         )
     }

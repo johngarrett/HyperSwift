@@ -5,11 +5,13 @@ final class FrameStyleTests: XCTestCase {
     let cssClass = "class-name"
     
     func testMargins() {
-        let _ = Div { "" }
+        let d = Div("hey") { "" }
             .margin(20)
             .margin(top: 20, .percent)
             .margin(20, .px, for: .horizontal)
             .margin(20, for: .vertical)
+        print(d)
+        print(CSSStyleSheet.generateStyleSheet())
     }
     func testPadding() {
         let _ = Div { "" }

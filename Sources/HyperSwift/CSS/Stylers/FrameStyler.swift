@@ -19,4 +19,10 @@ public extension HTMLComponent {
     func minHeight(_ height: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("min-height", CSSUnit(height, type)))
     }
+//    func frame(
+//        minHeight: CSSUnit?, height: CSSUnit?, maxHeight: CSSUnit?,
+//        minWidth: CSSUnit?, width: CSSUnit?, maxWidth: CSSUnit?
+//    ) -> HTMLComponent {
+//        
+//    }
 }

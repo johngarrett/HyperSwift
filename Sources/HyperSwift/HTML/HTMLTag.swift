@@ -5,7 +5,7 @@ public enum HTMLTag: String {
     case comment = "!--"
 
     case title
-    case header1 = "h1", header2 = "h2", header3 = "h3", header4 = "h4", header5 = "h5", header6 = "h6"
+    case h1, h2, h3, h4, h5, h6
     
     case a
     case em

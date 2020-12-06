@@ -1,7 +1,7 @@
 import Foundation
 
 public class Header: SimpleHTMLComponent {
-    public init(_ style: HTMLTag = .header1, text: String, cssClass: String = "", attributes: [String: String] = ["":""]) {
+    public init(_ style: HTMLTag = .h1, text: String, cssClass: String = "", attributes: [String: String] = ["":""]) {
         super.init(text, cssClass: cssClass, style)
         self.attributes["class"] = cssClass
     }
@@ -9,7 +9,7 @@ public class Header: SimpleHTMLComponent {
 
 public extension Header {
      convenience init(
-        _ style: HTMLTag = .header1,
+        _ style: HTMLTag = .h1,
         cssClass: String = "",
         attributes: [String: String] = ["":""],
         @HeaderBuilder _ text: () -> String
