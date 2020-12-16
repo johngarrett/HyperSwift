@@ -10,8 +10,15 @@ final class FrameStyleTests: XCTestCase {
             .margin(top: 20, .percent)
             .margin(20, .px, for: .horizontal)
             .margin(20, for: .vertical)
-            .border(14, .dashed, color: CSSColor("whi"))
+            .border(14, .dashed, color: CSSColor("white"))
+        let ld = Div("hey llo") { "" }
+            .margin(20)
+            .margin(top: 20, .percent)
+            .margin(20, .px, for: .horizontal)
+            .margin(20, for: .vertical)
+            .border(14, .dashed, color: CSSColor("white"))
         print(d)
+        print(ld)
         print(CSSStyleSheet.generateStyleSheet())
     }
     func testPadding() {

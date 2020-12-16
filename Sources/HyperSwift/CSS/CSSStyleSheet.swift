@@ -1,36 +1,11 @@
 import Foundation
 
 public struct CSSStyleSheet {
-    public static var stylesheet: [String: [String]] = ["": [""]]
+    public static var stylesheet: [String: [CSSStyle]] = [:]
     private static var rawCssString: String = ""
-    public static func add(_ linearKV: String, to className: String) {
-        stylesheet[className] = stylesheet[className] ?? [""]
-        // temporary, TODO: switch to dictionary
-        if stylesheet[className] != nil {
-            if !stylesheet[className]!.contains(linearKV) {
-                stylesheet[className]!.append(linearKV)
-            }
-        } else {
-            print("className \(className) was nil in stylesheet")
-        }
-    }
-    
-    public static func add(_ linearKV: String, for tag: HTMLTag, parent parentClass: String) {
-        add(linearKV, to: "\(parentClass)")
-    }
-    
+
     public static func add(_ styles: [CSSStyle], to cssClass: String) {
-        // check for duplicates
-        var keys = [""]
-        styles.forEach { style in
-            if keys.contains(style.key) {
-                print("[StyleSheet]: WARNING! Duplicate occurance for key: \(style.key) in \(cssClass)")
-                print("\t\(styles.filter({ $0.key == style.key}))")
-            } else {
-                keys.append(style.key)
-            }
-        }
-        add(styles.flattened() ?? "", to: cssClass)
+        stylesheet[cssClass] = (stylesheet[cssClass] ?? []) + styles
     }
 
     public static func add(css: String) {
@@ -38,29 +13,27 @@ public struct CSSStyleSheet {
     }
     
     public static func generateStyleSheet() -> String {
-        /** UNTESTED:
-         stylesheet
-         .filter { !$0.key.isEmpty && $0.value.count != 0 }
-         .map { (cssClass, styles) in
-         ".\(cssClass) {\n\t" + styles.joined(separator: "\n\t")
-         }
-         .joined(separator: "\n")
-         .appending("\n}\n")
-         */
-        
-        var output = ""
-        for (className, styles) in stylesheet {
-            if className == "" {
-                continue
+        // check for duplicity
+        for (cssClass, styles) in stylesheet {
+            for (cssKey, cssValues) in Dictionary(grouping: styles, by: { $0.key }) where cssValues.count > 1 {
+                print(
+                    """
+                    [StyleSheet]: WARNING! Duplicate occurance for key `\(cssKey)` in \(cssClass)
+                        \(cssValues.joined(by: .newLinesAndTabs))
+                    """
+                )
             }
-            output.append(".\(className) {\n\t")
-            output.append(
-                "\(styles.joined(separator: "\n\t"))"
-            )
-            output.append("\n}\n")
         }
-        output.append(rawCssString)
-        
-        return output
+
+        return stylesheet
+            .filter { !$0.key.isEmpty }
+            .map { className, styles in
+                """
+                .\(className.replacingOccurrences(of: " ", with: " .")) {
+                    \(styles.joined(by: .newLinesAndTabs))
+                }
+                """
+            }.joined(separator: "\n")
+        + rawCssString
     }
 }
