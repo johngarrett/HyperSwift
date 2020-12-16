@@ -10,6 +10,7 @@ final class FrameStyleTests: XCTestCase {
             .margin(top: 20, .percent)
             .margin(20, .px, for: .horizontal)
             .margin(20, for: .vertical)
+            .border(14, .dashed, color: CSSColor("whi"))
         print(d)
         print(CSSStyleSheet.generateStyleSheet())
     }

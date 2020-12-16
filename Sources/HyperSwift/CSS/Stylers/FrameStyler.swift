@@ -1,22 +1,21 @@
 import Foundation
-
 public extension HTMLComponent {
-    func width(_ width: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func width<T: FloatingPoint>(_ width: T, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("width", CSSUnit(width, type)))
     }
-    func height(_ height: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func height<T: FloatingPoint>(_ height: T, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("height", CSSUnit(height, type)))
     }
-    func maxWidth(_ width: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func maxWidth<T: FloatingPoint>(_ width: T, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("max-width", CSSUnit(width, type)))
     }
-    func minWidth(_ width: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func minWidth<T: FloatingPoint>(_ width: T, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("min-width", CSSUnit(width, type)))
     }
-    func maxHeight(_ height: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func maxHeight<T: FloatingPoint>(_ height: T, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("max-height", CSSUnit(height, type)))
     }
-    func minHeight(_ height: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func minHeight<T: FloatingPoint>(_ height: T, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("min-height", CSSUnit(height, type)))
     }
 //    func frame(

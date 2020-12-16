@@ -17,7 +17,7 @@ public extension HTMLComponent {
         add(style: CSSStyle("color", CSSColor(rawColor)))
     }
 
-    func shadow(x: Int=0, y:Int=0, spread:Int=0, blur:Int = 0, color: CSSColor) -> HTMLComponent {
+    func shadow<T: FloatingPoint>(x: T = 0, y: T = 0, spread: T = 0, blur: T = 0, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("box-shadow", "\(x)px \(y)px \(blur)px \(spread)px \(color.description)"))
     }
     
@@ -51,22 +51,22 @@ public extension HTMLComponent {
         add(style: CSSStyle("background-color", rawColor))
     }
     
-    func border(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+    func border<T: FloatingPoint>(_ radius: T, _ type: BorderType, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("border", "\(radius)px \(type.rawValue) \(color.description)"))
     }
-    func borderRight(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+    func borderRight<T: FloatingPoint>(_ radius: T, _ type: BorderType, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("border-right", "\(radius)px \(type.rawValue) \(color.description)"))
     }
-    func borderLeft(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+    func borderLeft<T: FloatingPoint>(_ radius: T, _ type: BorderType, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("border-left", "\(radius)px \(type.rawValue) \(color.description)"))
     }
-    func borderTop(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+    func borderTop<T: FloatingPoint>(_ radius: T, _ type: BorderType, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("border-top", "\(radius)px \(type.rawValue) \(color.description)"))
     }
-    func borderBottom(_ radius: Double, _ type: BorderType, color: CSSColor) -> HTMLComponent {
+    func borderBottom<T: FloatingPoint>(_ radius: T, _ type: BorderType, color: CSSColor) -> HTMLComponent {
         add(style: CSSStyle("border-bottom", "\(radius)px \(type.rawValue) \(color.description)"))
     }
-    func borderRadius(_ radius: Double) -> HTMLComponent {
+    func borderRadius<T: FloatingPoint>(_ radius: T) -> HTMLComponent {
         add(style: CSSStyle("border-radius", "\(radius)px"))
     }
     func display(_ dt: DisplayType) -> HTMLComponent {
@@ -91,7 +91,7 @@ public extension HTMLComponent {
         add(style: CSSStyle("flex-wrap", wrap.rawValue))
     }
 
-    func gridGap(_ space: Double, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
+    func gridGap<T: FloatingPoint>(_ space: T, _ type: CSSUnit.UnitType = .px) -> HTMLComponent {
         add(style: CSSStyle("grid-gap", CSSUnit(space, type)))
     }
 }
