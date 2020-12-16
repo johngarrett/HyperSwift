@@ -49,7 +49,8 @@ final class DivTests: XCTestCase {
         
         XCTAssertEqual(
             Div {
-                [Paragraph("hello"),Paragraph("hello")]
+                Paragraph("hello")
+                Paragraph("hello")
             }.render(),
             "<div><p>hello</p><p>hello</p></div>"
         )
