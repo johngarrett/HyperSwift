@@ -8,12 +8,12 @@ final class DivTests: XCTestCase {
         XCTAssertEqual(Div{ }.render(), "<div></div>")
         
         XCTAssertEqual(
-            Div(self.cssClass).render(),
+            Div(cssClass: self.cssClass).render(),
             "<div class=\"class-name\"></div>"
         )
         
         XCTAssertEqual(
-            Div("class-name", ["width": "100%"]).render(),
+            Div(cssClass: "class-name", attributes: ["width": "100%"]).render(),
             "<div class=\"class-name\" width=\"100%\"></div>"
         )
     }

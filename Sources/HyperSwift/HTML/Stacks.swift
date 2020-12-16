@@ -11,7 +11,7 @@ public extension HStack {
         @HStackBuilder _ children: () -> [HTMLElement]
     ) {
         self.init(
-            Div(cssClass, id: id, children: children())
+            Div(cssClass: cssClass, id: id, children: children())
                 .display(.flex)
                 .justifyContent(justification)
                 .alignItems(alignment)
@@ -28,7 +28,7 @@ public extension HStack {
         @HStackBuilder _ child: () -> HTMLElement
     ) {
         self.init(
-            Div(cssClass, id: id, children: [child()])
+            Div(cssClass: cssClass, id: id, children: [child()])
             .display(.flex)
             .justifyContent(justification)
             .alignItems(alignment)
@@ -66,7 +66,7 @@ public extension VStack {
         @VStackBuilder _ children: () -> [HTMLElement]
     ) {
         self.init(
-            Div(cssClass, id: id, children: children())
+            Div(cssClass: cssClass, id: id, children: children())
                 .display(.flex)
                 .justifyContent(justification)
                 .alignItems(alignment)
@@ -83,7 +83,7 @@ public extension VStack {
         @VStackBuilder _ child: () -> HTMLElement
     ) {
         self.init(
-            Div(cssClass, id: id, children: [child()])
+            Div(cssClass: cssClass, id: id, children: [child()])
                 .display(.flex)
                 .justifyContent(justification)
                 .alignItems(alignment)
