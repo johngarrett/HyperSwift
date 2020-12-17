@@ -4,7 +4,7 @@ public class HStack: HTMLComponent { }
 public extension HStack {
     convenience init(
         _ cssClass: String = "",
-        id: String="",
+        id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
@@ -21,7 +21,7 @@ public extension HStack {
     }
     convenience init(
         _ cssClass: String = "",
-        id: String="",
+        id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
@@ -41,16 +41,16 @@ public extension HStack {
 @_functionBuilder
 public struct HStackBuilder {
     public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
-        return HTMLComponent(.empty, components)
+        HTMLComponent(.empty, children: components)
     }
     public static func buildBlock(_ components: String...) -> HTMLElement {
-        return HTMLComponent(.empty, components.map { RawHTML($0) })
+        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
     public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
-        return HTMLComponent(.empty, components)
+        HTMLComponent(.empty, children: components)
     }
     public static func buildBlock(_ components: [String]) -> HTMLElement {
-        return HTMLComponent(.empty, components.map { RawHTML($0) })
+        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }
 
@@ -59,7 +59,7 @@ public class VStack: HTMLComponent { }
 public extension VStack {
     convenience init(
         _ cssClass: String = "",
-        id: String="",
+        id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
@@ -76,7 +76,7 @@ public extension VStack {
     }
     convenience init(
         _ cssClass: String = "",
-        id: String="",
+        id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
@@ -96,15 +96,15 @@ public extension VStack {
 @_functionBuilder
 public struct VStackBuilder {
     public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
-        return HTMLComponent(.empty, components)
+        HTMLComponent(.empty, children: components)
     }
     public static func buildBlock(_ components: String...) -> HTMLElement {
-        return HTMLComponent(.empty, components.map { RawHTML($0) })
+        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
     public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
-        return HTMLComponent(.empty, components)
+        HTMLComponent(.empty, children: components)
     }
     public static func buildBlock(_ components: [String]) -> HTMLElement {
-        return HTMLComponent(.empty, components.map { RawHTML($0) })
+        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }

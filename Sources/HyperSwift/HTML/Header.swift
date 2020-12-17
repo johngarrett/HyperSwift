@@ -1,9 +1,8 @@
 import Foundation
 
-public class Header: SimpleHTMLComponent {
+public class Header: HTMLComponent {
     public init(_ style: HTMLTag = .h1, text: String, cssClass: String = "", attributes: [String: String] = ["":""]) {
-        super.init(text, cssClass: cssClass, style)
-        self.attributes["class"] = cssClass
+        super.init(style, cssClass: cssClass, id: nil, attributes: attributes, children: [RawHTML(text)])
     }
 }
 

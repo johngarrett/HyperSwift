@@ -6,9 +6,9 @@ public class Head: HTMLElement {
     var styles: [CSSStyle] = []()
     var id = nil
     var attributes: [String: String]  = [:]()
-    var childComponents: [HTMLElement]?
+    var children: [HTMLElement]?
     init(@escaping children: () -> HTMLElement...) {
-        self.childComponents = children()
+        self.children = children()
     }
 }
  */

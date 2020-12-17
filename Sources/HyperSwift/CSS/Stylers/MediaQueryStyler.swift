@@ -2,7 +2,7 @@ import Foundation
 
 public extension HTMLComponent {
     func with(_ query: MediaQuery) -> HTMLComponent {
-        guard !cssClass.isEmpty else {
+        guard let cssClass = cssClass else {
             return self
         }
         

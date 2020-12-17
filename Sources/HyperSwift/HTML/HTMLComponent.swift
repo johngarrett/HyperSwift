@@ -2,34 +2,48 @@ import Foundation
 
 open class HTMLComponent: HTMLElement {
     public var tag: HTMLTag
-    public var cssClass: String
-    public var id: String
-    public var attributes: [String: String]
-    public var childComponents: [HTMLElement]?
+    public var cssClass: String?
+    public var id: String?
+    public var attributes: [String: String] = ["":""]
+    public var children: [HTMLElement] = []
     public var styles: [CSSStyle] = []
     public var description: String {
         self.render()
     }
 
     open func render() -> String {
-        if !cssClass.isEmpty { CSSStyleSheet.add(styles, to: cssClass) }
+        if let cssClass = cssClass {
+            CSSStyleSheet.add(styles, to: cssClass)
+        }
 
-        return tag.opening(with: attributes, and: cssClass.isEmpty ? styles: nil)
-            + (childComponents?.map { $0.render() }.joined() ?? "")
+        return tag.opening(with: attributes, and: cssClass == nil ? styles: nil)
+            + children.map { $0.render() }.joined()
             + tag.closing()
     }
     
-    public init(_ tag: HTMLTag, cssClass: String="", id: String="", attributes: [String: String] = ["": ""], _ childComponents: [HTMLElement]? = nil) {
+    public init(
+        _ tag: HTMLTag,
+        cssClass: String?=nil,
+        id: String?=nil,
+        attributes: [String: String] = ["":""],
+        children: [HTMLElement]
+    ) {
         self.tag = tag
-        self.childComponents = childComponents
+        self.children = children
         self.cssClass = cssClass
         self.id = id
-        self.attributes = attributes.merging(
-            ["id": id, "class": cssClass],
+        let p = attributes.merging(
+            ["id": id, "class": cssClass].compactMap {
+                guard let value = $0.value else {
+                    return nil
+                }
+                return ($0.key, value)
+            },
             uniquingKeysWith: {
-                    [$0, $1].filter { !$0.isEmpty }.joined(separator: " ")
+                [$0, $1].filter { !$0.isEmpty }.joined(separator: " ")
             }
         )
+        self.attributes = p
     }
     
     public init(_ element: HTMLElement) {
@@ -37,7 +51,7 @@ open class HTMLComponent: HTMLElement {
         self.cssClass = element.cssClass
         self.id = element.id
         self.attributes = element.attributes
-        self.childComponents = element.childComponents
+        self.children = element.children
         self.styles = element.styles
     }
 }
@@ -45,8 +59,8 @@ open class HTMLComponent: HTMLElement {
 public extension HTMLComponent {
     convenience init(
         _ tag: HTMLTag,
-        cssClass: String="",
-        id: String="",
+        cssClass: String?=nil,
+        id: String?=nil,
         attributes: [String: String]=["":""],
         @HTMLComponentBuilder _ component: () -> HTMLElement
     ) {
@@ -55,14 +69,14 @@ public extension HTMLComponent {
             cssClass: cssClass,
             id: id,
             attributes: attributes,
-            [component()]
+            children: [component()]
         )
     }
     
     convenience init(
         _ tag: HTMLTag,
-        cssClass: String="",
-        id: String="",
+        cssClass: String?=nil,
+        id: String?=nil,
         attributes: [String: String]=["":""],
         @HTMLComponentBuilder _ components: () -> [HTMLElement]
     ) {
@@ -71,14 +85,14 @@ public extension HTMLComponent {
                cssClass: cssClass,
                id: id,
                attributes: attributes,
-               components()
+            children: components()
            )
        }
     
     convenience init(
         _ tag: HTMLTag,
-        cssClass: String="",
-        id: String="",
+        cssClass: String?=nil,
+        id: String?=nil,
         attributes: [String: String] = ["":""],
         @HTMLComponentBuilder _ component: () -> String
     ) {
@@ -87,7 +101,7 @@ public extension HTMLComponent {
             cssClass: cssClass,
             id: id,
             attributes: attributes,
-            [RawHTML(component())]
+            children: [RawHTML(component())]
         )
     }
 }
@@ -95,21 +109,22 @@ public extension HTMLComponent {
 @_functionBuilder
 public struct HTMLComponentBuilder {
     public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
-        return HTMLComponent(.empty, components)
+        HTMLComponent(.empty, children: components)
     }
     public static func buildBlock(_ components: String...) -> HTMLElement {
-        return HTMLComponent(.empty, components.map { RawHTML($0) })
+        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
     public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
-        return HTMLComponent(.empty, components)
+        HTMLComponent(.empty, children: components)
     }
     public static func buildBlock(_ components: [String]) -> HTMLElement {
-        return HTMLComponent(.empty, components.map { RawHTML($0) })
+        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }
 
  extension HTMLComponent: Equatable {
     public static func == (lhs: HTMLComponent, rhs: HTMLComponent) -> Bool {
         return lhs.cssClass == rhs.cssClass
+            && lhs.id == rhs.id
     }
 }

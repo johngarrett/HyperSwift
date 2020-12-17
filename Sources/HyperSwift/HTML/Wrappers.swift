@@ -1,38 +1,25 @@
 import Foundation
 
-open class SimpleHTMLComponent: HTMLComponent {
-    public let text: String!
-    public init(_ text: String, attributes: [String:String] = ["":""], cssClass: String = "", _ tag: HTMLTag) {
-        self.text = text
-        super.init(tag, cssClass: cssClass, attributes: attributes)
-    }
-    
-    override open func render() -> String {
-        self.tag.opening(with: attributes, and: styles) + self.text + self.tag.closing()
-    }
-}
-
-public class Comment: SimpleHTMLComponent {
+public class Comment: HTMLComponent {
     public init(_ text: String) {
-        super.init(text, .comment)
+        super.init(.comment, cssClass: nil, id: nil, attributes: [:], children: [RawHTML(text)])
     }
 }
 
 public class Image: HTMLComponent {
     public init(url: String) {
-        super.init(.img, attributes: ["src": url])
+        super.init(.img, cssClass: nil, id: nil, attributes: ["src": url], children: [])
     }
 }
 
 public class RawHTML: HTMLElement {
     public var tag: HTMLTag = .empty
-    public var cssClass: String = ""
-    public var id: String = ""
+    public var cssClass: String? = nil
+    public var id: String? = nil
     public var styles: [CSSStyle] = []
     public var attributes: [String : String] = ["":""]
-    public var childComponents: [HTMLElement]? = nil
+    public var children: [HTMLElement] = []
     public var description: String
-
     public func render() -> String {
         description
     }
