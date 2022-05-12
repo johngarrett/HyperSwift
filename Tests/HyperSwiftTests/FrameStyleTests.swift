@@ -2,8 +2,6 @@ import XCTest
 import HyperSwift
 
 final class FrameStyleTests: XCTestCase {
-    let cssClass = "class-name"
-    
     func testMargins() {
         let d = Div("hey") { "" }
             .margin(20)
@@ -17,9 +15,6 @@ final class FrameStyleTests: XCTestCase {
             .margin(20, .px, for: .horizontal)
             .margin(20, for: .vertical)
             .border(14, .dashed, color: CSSColor("white"))
-        print(d)
-        print(ld)
-        print(StyleSheet.generateStyleSheet())
     }
     func testPadding() {
         let _ = Div { "" }

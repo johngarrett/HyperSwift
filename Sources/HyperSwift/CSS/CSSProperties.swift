@@ -88,3 +88,7 @@ public enum BorderType: String {
     case dotted, dashed, solid, double, groove, ridge, inset, outset
     case none, hidden
 }
+
+public enum FontFormat: String {
+    case truetype, opentype, svg, woff, woff2
+}

@@ -2,6 +2,7 @@ import Foundation
 
 public struct StyleSheet {
     // cssClass: [ [key: value] ]
+    public static var fontFaces: [FontFace] = []
     public static var stylesheet: [String: [String: String]] = [:]
     private static var rawCssString: String = ""
 
@@ -42,7 +43,9 @@ public struct StyleSheet {
     }
     
     public static func generateStyleSheet() -> String {
-        return stylesheet.keys.map { cssClass in
+        return fontFaces.joined(by: .newLines)
+        +
+        stylesheet.keys.map { cssClass in
             """
             .\(cssClass.replacingOccurrences(of: " ", with: " .")) {
                 \(styles(for: cssClass).joined(by: .newLinesAndTabs))
