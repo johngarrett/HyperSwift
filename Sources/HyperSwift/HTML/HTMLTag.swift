@@ -30,7 +30,7 @@ public enum HTMLTag: String {
     
     case empty
 
-    public func opening(with attributes: [String: String], and styles: [CSSStyle]?) -> String {
+    public func opening(with attributes: [String: String], and styles: [Style]?) -> String {
         switch self {
         case .empty:
             return ""

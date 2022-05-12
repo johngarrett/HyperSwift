@@ -3,7 +3,7 @@ import Foundation
 public class HStack: HTMLComponent { }
 public extension HStack {
     convenience init(
-        _ cssClass: String = "",
+        _ cssClass: String? = nil,
         id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
@@ -20,7 +20,7 @@ public extension HStack {
         )
     }
     convenience init(
-        _ cssClass: String = "",
+        _ cssClass: String? = nil,
         id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
@@ -43,14 +43,8 @@ public struct HStackBuilder {
     public static func buildBlock(_ components: Displayable...) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: String...) -> Displayable {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
-    }
     public static func buildBlock(_ components: [Displayable]) -> Displayable {
         HTMLComponent(.empty, children: components)
-    }
-    public static func buildBlock(_ components: [String]) -> Displayable {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }
 
@@ -58,7 +52,7 @@ public class VStack: HTMLComponent { }
 
 public extension VStack {
     convenience init(
-        _ cssClass: String = "",
+        _ cssClass: String? = nil,
         id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
@@ -75,7 +69,7 @@ public extension VStack {
         )
     }
     convenience init(
-        _ cssClass: String = "",
+        _ cssClass: String? = nil,
         id: String?=nil,
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
@@ -98,13 +92,7 @@ public struct VStackBuilder {
     public static func buildBlock(_ components: Displayable...) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: String...) -> Displayable {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
-    }
     public static func buildBlock(_ components: [Displayable]) -> Displayable {
         HTMLComponent(.empty, children: components)
-    }
-    public static func buildBlock(_ components: [String]) -> Displayable {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }

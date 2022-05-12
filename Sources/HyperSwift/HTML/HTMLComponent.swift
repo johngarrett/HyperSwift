@@ -6,14 +6,14 @@ open class HTMLComponent: HTMLElement {
     public var id: String?
     public var attributes: [String: String] = ["":""]
     public var children: [Displayable] = []
-    public var styles: [CSSStyle] = []
+    public var styles: [Style] = []
     public var description: String {
         self.render()
     }
 
     open func render() -> String {
         if let cssClass = cssClass {
-            CSSStyleSheet.add(styles, to: cssClass)
+            StyleSheet.add(styles, to: cssClass)
         }
 
         return tag.opening(with: attributes, and: cssClass == nil ? styles: nil)
@@ -53,6 +53,15 @@ open class HTMLComponent: HTMLElement {
         self.attributes = element.attributes
         self.children = element.children
         self.styles = element.styles
+    }
+    
+    public init(_ component: HTMLComponent) {
+        self.tag = component.tag
+        self.cssClass = component.cssClass
+        self.id = component.id
+        self.attributes = component.attributes
+        self.children = component.children
+        self.styles = component.styles
     }
 }
 

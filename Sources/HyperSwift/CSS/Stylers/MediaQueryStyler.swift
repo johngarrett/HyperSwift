@@ -6,7 +6,7 @@ public extension HTMLComponent {
             return self
         }
         
-        CSSStyleSheet.add(css: String(describing: query))
+        StyleSheet.add(css: String(describing: query))
         return self
     }
 }

@@ -2,17 +2,17 @@ import Foundation
 
 public extension HTMLComponent {
     func grid(_ value: String) -> HTMLComponent {
-        add(style: CSSStyle("grid", value))
+        add(style: Style("grid", value))
     }
     func gridArea(_ value: String) -> HTMLComponent {
-        add(style: CSSStyle("grid-area", value))
+        add(style: Style("grid-area", value))
     }
     func gridTemplate(_ value: String) -> HTMLComponent {
-        add(style: CSSStyle("grid-template", value))
+        add(style: Style("grid-template", value))
     }
     func placeItems(_ alignments: Alignment...) -> HTMLComponent {
         add(
-            style: CSSStyle(
+            style: Style(
                 "place-items",
                 alignments
                     .map { String(describing: $0) }
