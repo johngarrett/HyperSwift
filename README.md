@@ -47,7 +47,7 @@ HyperSwift is being used on [garrepi.dev](https://www.garrepi.dev) as we speak! 
 in your `Package.swift`: 
 ```swift
 . . .
-.package(url: "https://github.com/johngarrett/HyperSwift", .branch("master")),
+.package(url: "https://github.com/johngarrett/HyperSwift", .branch("main")),
 . . .
 ```
 
