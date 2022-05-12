@@ -5,7 +5,7 @@ open class HTMLComponent: HTMLElement {
     public var cssClass: String?
     public var id: String?
     public var attributes: [String: String] = ["":""]
-    public var children: [HTMLElement] = []
+    public var children: [Displayable] = []
     public var styles: [CSSStyle] = []
     public var description: String {
         self.render()
@@ -26,7 +26,7 @@ open class HTMLComponent: HTMLElement {
         cssClass: String?=nil,
         id: String?=nil,
         attributes: [String: String] = ["":""],
-        children: [HTMLElement]
+        children: [Displayable]
     ) {
         self.tag = tag
         self.children = children
@@ -62,7 +62,7 @@ public extension HTMLComponent {
         cssClass: String?=nil,
         id: String?=nil,
         attributes: [String: String]=["":""],
-        @HTMLComponentBuilder _ component: () -> HTMLElement
+        @HTMLComponentBuilder _ component: () -> Displayable
     ) {
         self.init(
             tag,
@@ -78,7 +78,7 @@ public extension HTMLComponent {
         cssClass: String?=nil,
         id: String?=nil,
         attributes: [String: String]=["":""],
-        @HTMLComponentBuilder _ components: () -> [HTMLElement]
+        @HTMLComponentBuilder _ components: () -> [Displayable]
     ) {
            self.init(
                tag,
@@ -106,19 +106,13 @@ public extension HTMLComponent {
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct HTMLComponentBuilder {
-    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+    public static func buildBlock(_ components: Displayable...) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: String...) -> HTMLElement {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
-    }
-    public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
+    public static func buildBlock(_ components: [Displayable]) -> Displayable {
         HTMLComponent(.empty, children: components)
-    }
-    public static func buildBlock(_ components: [String]) -> HTMLElement {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }
 

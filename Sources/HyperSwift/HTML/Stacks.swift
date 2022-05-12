@@ -8,7 +8,7 @@ public extension HStack {
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
-        @HStackBuilder _ children: () -> [HTMLElement]
+        @HStackBuilder _ children: () -> [Displayable]
     ) {
         self.init(
             Div(cssClass: cssClass, id: id, children: children())
@@ -25,7 +25,7 @@ public extension HStack {
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
-        @HStackBuilder _ child: () -> HTMLElement
+        @HStackBuilder _ child: () -> Displayable
     ) {
         self.init(
             Div(cssClass: cssClass, id: id, children: [child()])
@@ -38,18 +38,18 @@ public extension HStack {
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct HStackBuilder {
-    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+    public static func buildBlock(_ components: Displayable...) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: String...) -> HTMLElement {
+    public static func buildBlock(_ components: String...) -> Displayable {
         HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
-    public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
+    public static func buildBlock(_ components: [Displayable]) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: [String]) -> HTMLElement {
+    public static func buildBlock(_ components: [String]) -> Displayable {
         HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }
@@ -63,7 +63,7 @@ public extension VStack {
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
-        @VStackBuilder _ children: () -> [HTMLElement]
+        @VStackBuilder _ children: () -> [Displayable]
     ) {
         self.init(
             Div(cssClass: cssClass, id: id, children: children())
@@ -80,7 +80,7 @@ public extension VStack {
         justify justification: Justification = .flexStart,
         align alignment: Alignment = .stretch,
         wrap: FlexWrap = .nowrap,
-        @VStackBuilder _ child: () -> HTMLElement
+        @VStackBuilder _ child: () -> Displayable
     ) {
         self.init(
             Div(cssClass: cssClass, id: id, children: [child()])
@@ -93,18 +93,18 @@ public extension VStack {
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct VStackBuilder {
-    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+    public static func buildBlock(_ components: Displayable...) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: String...) -> HTMLElement {
+    public static func buildBlock(_ components: String...) -> Displayable {
         HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
-    public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
+    public static func buildBlock(_ components: [Displayable]) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: [String]) -> HTMLElement {
+    public static func buildBlock(_ components: [String]) -> Displayable {
         HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }

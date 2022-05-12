@@ -22,7 +22,7 @@ public extension Header {
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct HeaderBuilder {
     public static func buildBlock(_ text: String) -> String { text }
 }
