@@ -19,7 +19,7 @@ public struct MediaQuery: CustomStringConvertible {
     let type: MediaType?
     let feature: MediaFeature
     let value: String
-    let items = [String: [CSSStyle]]()
+    let items = [String: [Style]]()
     
     public var description: String {
         """

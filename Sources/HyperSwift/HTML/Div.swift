@@ -1,17 +1,17 @@
 import Foundation
 
 public class Div: HTMLComponent {
-    public init(cssClass: String?=nil, id: String?=nil, attributes:[String: String] = [:], children: [HTMLElement] = []) {
+    public init(cssClass: String?=nil, id: String?=nil, attributes:[String: String] = [:], children: [Displayable] = []) {
         super.init(.div, cssClass: cssClass, id: id, attributes: attributes, children: children)
     }
 }
 
 public extension Div {
-    convenience init(_ cssClass: String?=nil, id: String? = nil, attributes:[String:String] = [:], @DivBuilder _ children: () -> [HTMLElement]) {
+    convenience init(_ cssClass: String?=nil, id: String? = nil, attributes:[String:String] = [:], @DivBuilder _ children: () -> [Displayable]) {
         self.init(cssClass: cssClass, id: id, attributes: attributes, children: children())
     }
     @_disfavoredOverload
-    convenience init(_ cssClass: String?=nil, id: String? = nil, attributes:[String:String] = [:], @DivBuilder _ child: () -> HTMLElement) {
+    convenience init(_ cssClass: String?=nil, id: String? = nil, attributes:[String:String] = [:], @DivBuilder _ child: () -> Displayable) {
         self.init(cssClass: cssClass, id: id, attributes: attributes, children: [child()])
     }
     
@@ -21,18 +21,12 @@ public extension Div {
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct DivBuilder {
-    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+    public static func buildBlock(_ components: Displayable...) -> Displayable {
         HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: String...) -> HTMLElement {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
-    }
-    public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
+    public static func buildBlock(_ components: [Displayable]) -> Displayable {
         HTMLComponent(.empty, children: components)
-    }
-    public static func buildBlock(_ components: [String]) -> HTMLElement {
-        HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }

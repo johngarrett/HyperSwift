@@ -1,7 +1,7 @@
 import Foundation
 
 public class Link: HTMLComponent {
-    public init(_ cssClass: String?=nil, id: String?=nil, href: String, attributes:[String: String] = ["":""], children: [HTMLElement]) {
+    public init(_ cssClass: String?=nil, id: String?=nil, href: String, attributes:[String: String] = ["":""], children: [Displayable]) {
         super.init(
             .a,
             cssClass: cssClass,
@@ -17,30 +17,20 @@ public class Link: HTMLComponent {
 }
 
 public extension Link {
-    convenience init(_ cssClass: String?=nil, id: String?=nil, href:String, attributes:[String:String] = ["":""], @LinkBuilder _ children: () -> [HTMLElement]) {
+    convenience init(_ cssClass: String?=nil, id: String?=nil, href:String, attributes:[String:String] = ["":""], @LinkBuilder _ children: () -> [Displayable]) {
         self.init(cssClass, id: id, href: href, attributes: attributes, children: children())
     }
-    convenience init(_ cssClass: String?=nil, id: String?=nil, href:String, attributes:[String:String] = ["":""], @LinkBuilder _ child: () -> HTMLElement) {
+    convenience init(_ cssClass: String?=nil, id: String?=nil, href:String, attributes:[String:String] = ["":""], @LinkBuilder _ child: () -> Displayable) {
         self.init(cssClass, id: id, href: href, attributes: attributes, children: [child()])
-    }
-    
-    convenience init(_ cssClass: String?=nil, id: String?=nil, href:String, attributes:[String:String] = ["":""], @LinkBuilder _ child: () -> String) {
-        self.init(cssClass, id: id, href: href, attributes: attributes, children: [RawHTML(child())])
     }
 }
 
-@_functionBuilder
+@resultBuilder
 public struct LinkBuilder {
-    public static func buildBlock(_ components: HTMLElement...) -> HTMLElement {
+    public static func buildBlock(_ components: Displayable...) -> Displayable {
         return HTMLComponent(.empty, children: components)
     }
-    public static func buildBlock(_ components: String...) -> HTMLElement {
-        return HTMLComponent(.empty, children: components.map { RawHTML($0) })
-    }
-    public static func buildBlock(_ components: [HTMLElement]) -> HTMLElement {
+    public static func buildBlock(_ components: [Displayable]) -> Displayable {
         return HTMLComponent(.empty, children: components)
-    }
-    public static func buildBlock(_ components: [String]) -> HTMLElement {
-        return HTMLComponent(.empty, children: components.map { RawHTML($0) })
     }
 }

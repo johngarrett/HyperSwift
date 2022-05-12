@@ -6,7 +6,7 @@ public extension HTMLComponent {
         _ type: CSSUnit.UnitType = .px
     ) -> HTMLComponent {
         add(
-            style: CSSStyle(
+            style: Style(
                 "padding",
                 values:
                     CSSUnit(top, type),
@@ -23,11 +23,11 @@ public extension HTMLComponent {
     ) -> HTMLComponent {
         switch direction {
         case .all:
-            return add(style: CSSStyle("padding", CSSUnit(value, type)))
+            return add(style: Style("padding", CSSUnit(value, type)))
         case .horizontal:
-            return add(style: CSSStyle("padding", "0 \(CSSUnit(value, type))"))
+            return add(style: Style("padding", "0 \(CSSUnit(value, type))"))
         case .vertical:
-            return add(style: CSSStyle("padding", "\(CSSUnit(value, type)) 0"))
+            return add(style: Style("padding", "\(CSSUnit(value, type)) 0"))
         }
     }
 }

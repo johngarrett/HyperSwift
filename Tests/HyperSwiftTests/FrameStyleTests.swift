@@ -19,7 +19,7 @@ final class FrameStyleTests: XCTestCase {
             .border(14, .dashed, color: CSSColor("white"))
         print(d)
         print(ld)
-        print(CSSStyleSheet.generateStyleSheet())
+        print(StyleSheet.generateStyleSheet())
     }
     func testPadding() {
         let _ = Div { "" }

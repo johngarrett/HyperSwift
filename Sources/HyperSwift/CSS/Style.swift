@@ -1,6 +1,6 @@
 import Foundation
 
-public struct CSSStyle: CustomStringConvertible {
+public struct Style: CustomStringConvertible {
     public let key: String
     public let value: String
     public var description: String {
